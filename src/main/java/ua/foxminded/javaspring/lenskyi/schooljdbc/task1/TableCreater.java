@@ -1,13 +1,13 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 public class TableCreater {
 
+    ResultSet resultSet = null;
+    PreparedStatement preparedStatement = null;
+    Connection connection = null;
     private final String URL = "jdbc:postgresql://localhost/SchoolJDBC";
     private final String USER = "postgres";
     private final String PASSWORD = "666";
@@ -16,12 +16,11 @@ public class TableCreater {
     FileReader reader = new FileReader();
 
 
-    public void createTable() throws SQLException {
+    public void createTable() {
         List<String> tablesToCreate = reader.readFileLines(INITTABLE);
         List<String> courses = reader.readFileLines(COURSESCONTENT);
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              Statement statement = connection.createStatement();) {
-            statement.execute("DROP TABLE IF EXISTS school.courses");
             for (String initiateCommand : tablesToCreate) {
                 statement.execute(initiateCommand);
             }
@@ -29,23 +28,22 @@ public class TableCreater {
                 statement.execute(course);
             }
         } catch (SQLException e) {
-            printSQLException(e);
+            e.printStackTrace();
         }
     }
-
-    public static void printSQLException(SQLException ex) {
-        for (Throwable e : ex) {
-            if (e instanceof SQLException) {
-                e.printStackTrace(System.err);
-                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
-                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-                System.err.println("Message: " + e.getMessage());
-                Throwable t = ex.getCause();
-                while (t != null) {
-                    System.out.println("Cause: " + t);
-                    t = t.getCause();
-                }
+    public void executeQuery(String query) {
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String descr = rs.getString("description");
+                System.out.println(id + "," + name + "," + descr);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
