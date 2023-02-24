@@ -1,0 +1,10 @@
+INSERT INTO school.courses (id, name, description) VALUES (1, 'Math', 'Learn basic math operations');
+INSERT INTO school.courses (id, name, description) VALUES (2, 'English', 'How to write and speak, spell');
+INSERT INTO school.courses (id, name, description) VALUES (3, 'Biologic', 'Live organisms knowledge');
+INSERT INTO school.courses (id, name, description) VALUES (4, 'Geography', 'Learn countries');
+INSERT INTO school.courses (id, name, description) VALUES (5, 'Chemistry', 'Learn how to create potions');
+INSERT INTO school.courses (id, name, description) VALUES (6, 'Physics', 'Basic nature science');
+INSERT INTO school.courses (id, name, description) VALUES (7, 'History', 'Myths and fairytale');
+INSERT INTO school.courses (id, name, description) VALUES (8, 'Finance', 'Teaching about safe and spend money');
+INSERT INTO school.courses (id, name, description) VALUES (9, 'Sports', 'Sport games');
+INSERT INTO school.courses (id, name, description) VALUES (10, 'Etiquette', 'How to be gentle with speaking');
