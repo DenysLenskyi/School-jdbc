@@ -12,10 +12,16 @@ public class Main {
         runApp(input);
         input.close();
     }
-    public static void runApp(Scanner input) {
+    public static void runApp(Scanner input) throws SQLException {
         CoursesDao coursesTable = new CoursesDao();
+        GroupsDao groupsTable = new GroupsDao();
+        StudentsDao studentsTable = new StudentsDao();
         coursesTable.createTable();
         coursesTable.populateCoursesTable();
+        groupsTable.createTable();
+        groupsTable.populateTable();
+        studentsTable.createTable();
+        studentsTable.populateTable();
         System.out.println("Available commands:");
         System.out.println(EXIT + " - quit APP");
         System.out.println("find_course_<id> - prints course by <id>");

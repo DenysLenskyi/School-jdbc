@@ -6,7 +6,7 @@ public class CoursesDao {
     private final String URL = "jdbc:postgresql://localhost/SchoolJDBC";
     private final String USER = "postgres";
     private final String PASSWORD = "666";
-    private final String INIT_TABLE = "/initiate-table.sql";
+    private final String INIT_TABLE = "/initiate-table-courses.sql";
     private final String COURSES_CONTENT = "/populate-table-courses.sql";
     private final String SQL_FIND_BY_ID = "SELECT ID, NAME, DESCRIPTION FROM school.courses WHERE ID = ";
     FileReader reader = new FileReader();
