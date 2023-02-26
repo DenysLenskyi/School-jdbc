@@ -10,15 +10,16 @@ import java.util.stream.Collectors;
 
 public class FileReader {
 
-    public List<String> readFileLines(String fileName) {
+    public String readFile(String fileName) {
         List<String> list;
-        StringBuilder fileText = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         try (InputStream inputStream = getClass().getResourceAsStream(fileName);
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             list = reader.lines().collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return list;
+        list.forEach(result::append);
+        return result.toString();
     }
 }

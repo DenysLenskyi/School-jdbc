@@ -11,6 +11,6 @@ public class FileReaderTest {
                 "CREATE TABLE IF NOT EXISTS courses \n" +
                 "(ID INT PRIMARY KEY , \n" +
                 " NAME TEXT, \n" +
-                " DESCRIPTION TEXT) \n", reader.readFileLines("/test.txt"));
+                " DESCRIPTION TEXT) \n", reader.readFile("/test.txt"));
     }
 }

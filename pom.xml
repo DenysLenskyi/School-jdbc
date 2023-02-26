@@ -37,15 +37,6 @@
     </dependency>
 </dependencies>
 
-<profiles>
-    <profile>
-        <id>Formula1</id>
-        <properties>
-            <mainClassToLoad>ua.foxminded.javaspring.lenskyi.schooljdbc.task1.Main</mainClassToLoad>
-        </properties>
-    </profile>
-</profiles>
-
 <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <testSourceDirectory>src/test/java</testSourceDirectory>
