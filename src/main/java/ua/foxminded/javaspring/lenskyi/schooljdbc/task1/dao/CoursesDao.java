@@ -1,4 +1,6 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
+
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.FileReader;
 
 import java.sql.*;
 
@@ -15,7 +17,7 @@ public class CoursesDao {
     public void createTable() {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              Statement statement = connection.createStatement();) {
-            statement.execute("DROP TABLE IF EXISTS school.courses");
+            statement.execute("DROP TABLE IF EXISTS school.courses CASCADE");
             statement.execute(reader.readFile(INIT_TABLE));
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,5 +1,10 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
 
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.CoursesDao;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.GroupsDao;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StudentsCoursesDao;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StudentsDao;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -16,12 +21,15 @@ public class Main {
         CoursesDao coursesTable = new CoursesDao();
         GroupsDao groupsTable = new GroupsDao();
         StudentsDao studentsTable = new StudentsDao();
+        StudentsCoursesDao studentsCoursesTable = new StudentsCoursesDao();
         coursesTable.createTable();
         coursesTable.populateCoursesTable();
         groupsTable.createTable();
         groupsTable.populateTable();
         studentsTable.createTable();
         studentsTable.populateTable();
+        studentsCoursesTable.createTable();
+        studentsCoursesTable.populateTable();
         System.out.println("Available commands:");
         System.out.println(EXIT + " - quit APP");
         System.out.println("find_course_<id> - prints course by <id>");

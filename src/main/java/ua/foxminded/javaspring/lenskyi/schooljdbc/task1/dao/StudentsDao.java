@@ -1,4 +1,6 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
+
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.FileReader;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -31,7 +33,7 @@ public class StudentsDao {
     public void createTable() {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              Statement statement = connection.createStatement();) {
-            statement.execute("DROP TABLE IF EXISTS school.students");
+            statement.execute("DROP TABLE IF EXISTS school.students CASCADE");
             statement.execute(reader.readFile(INIT_TABLE));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,7 +60,7 @@ public class StudentsDao {
         int groupId = 0;
         while (totalNumStudentsAssignedToGroups <= 200) {
             groupId++;
-            int randomNumStudentsForGroup = random.nextInt(10, 30);
+            int randomNumStudentsForGroup = random.nextInt(10, 31);
             totalNumStudentsAssignedToGroups += randomNumStudentsForGroup;
             if (totalNumStudentsAssignedToGroups > 200) {
                 int lastStudentGroup = 200 - (totalNumStudentsAssignedToGroups - randomNumStudentsForGroup);
@@ -77,12 +79,12 @@ public class StudentsDao {
                 script.append(groups.COMA)
                         .append(groups.WHITESPACE)
                         .append(groups.QUOTE)
-                        .append(names[random.nextInt(39)])
+                        .append(names[random.nextInt(40)])
                         .append(groups.QUOTE)
                         .append(groups.COMA)
                         .append(groups.WHITESPACE)
                         .append(groups.QUOTE)
-                        .append(names[random.nextInt(39)])
+                        .append(names[random.nextInt(40)])
                         .append(SON)
                         .append(groups.QUOTE)
                         .append(groups.CLOSE_BRACKET)

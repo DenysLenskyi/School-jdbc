@@ -1,6 +1,7 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
 
 import org.junit.jupiter.api.Test;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StudentsDao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
