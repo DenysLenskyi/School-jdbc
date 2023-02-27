@@ -25,7 +25,7 @@ public class GroupsDao {
     public void createTable() {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              Statement statement = connection.createStatement();) {
-            statement.execute("DROP TABLE IF EXISTS school.groups");
+            statement.execute("DROP TABLE IF EXISTS school.groups CASCADE");
             statement.execute(reader.readFile(INIT_TABLE));
         } catch (SQLException e) {
             e.printStackTrace();
