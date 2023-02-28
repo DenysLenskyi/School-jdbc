@@ -13,12 +13,6 @@ public class GroupsDaoTest {
     }
 
     @Test
-    void randomTwoNumbersTest() {
-        GroupsDao test = new GroupsDao();
-        assertEquals(true, test.getRandomNumber() >= 10);
-    }
-
-    @Test
     void createScriptTest() {
         GroupsDao test = new GroupsDao();
         assertEquals(184, test.createSqlScriptToPopulateGroupsTable().length());

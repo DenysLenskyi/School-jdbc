@@ -45,6 +45,7 @@ public class GroupsDao {
 
     public String createSqlScriptToPopulateGroupsTable() {
         StringBuilder script = new StringBuilder();
+        Random random = new Random();
         script.append(INSERT_QUERY).append(NEWLINE).append(VALUES).append(NEWLINE);
         for (int i = 1; i <= 10; i++) {
             script.append(OPEN_BRACKET)
@@ -54,7 +55,7 @@ public class GroupsDao {
                     .append(QUOTE)
                     .append(getRandomCharactersUpperCase(2))
                     .append(HYPHEN)
-                    .append(getRandomNumber())
+                    .append(random.nextInt(10,100))
                     .append(QUOTE)
                     .append(CLOSE_BRACKET)
                     .append(COMA)
@@ -79,9 +80,5 @@ public class GroupsDao {
                 }
             }
             return r.toString();
-        }
-        public int getRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(10, 100);
         }
     }

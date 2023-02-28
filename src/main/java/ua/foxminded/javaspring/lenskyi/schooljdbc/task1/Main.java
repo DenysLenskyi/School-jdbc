@@ -30,6 +30,12 @@ public class Main {
         studentsTable.populateTable();
         studentsCoursesTable.createTable();
         studentsCoursesTable.populateTable();
+        //System.out.println(studentsTable.getGroupWithAmountOfStudents(15));
+        System.out.println(studentsCoursesTable.getStudentsEnrolledToCourse("History"));
+
+        /*
+
+
         System.out.println("Available commands:");
         System.out.println(EXIT + " - quit APP");
         System.out.println("find_course_<id> - prints course by <id>");
@@ -44,6 +50,8 @@ public class Main {
             System.out.println("Unknown command...");
             runApp(input);
         }
+
+         */
     }
     private static String getIdFromString(String str) {
         String[] command = str.split(UNDERSCORE);

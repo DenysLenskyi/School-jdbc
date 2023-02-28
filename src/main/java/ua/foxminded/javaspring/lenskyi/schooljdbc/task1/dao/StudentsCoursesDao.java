@@ -2,10 +2,7 @@ package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.FileReader;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Random;
 
 public class StudentsCoursesDao {
@@ -19,10 +16,21 @@ public class StudentsCoursesDao {
     public static final String NEWLINE = "\n";
     public static final String SEMICOLON = ";";
     public static final String VALUES = "VALUES";
+    public static final String VERTICAL_BAR = " | ";
+    public static final String STUDENT_ID = "Student ID: ";
+    public static final String STUDENT_FULL_NAME = "Student name: ";
+    public static final String QUOTE = "'";
     public final String OPEN_BRACKET = "(";
     public final String CLOSE_BRACKET = ")";
     public final String COMA = ",";
     public final String WHITESPACE = " ";
+    private static final String SQL_FIND_STUDENTS_ENROLLED_TO_COURSE = """
+            select distinct ss.student_id, first_name, last_name
+            from school.students_courses ssc
+            inner join school.courses sc on course_id = sc.id
+            inner join school.students ss on ssc.student_id = ss.student_id
+            where sc.name = 
+            """;
 
     public void createTable() {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -65,4 +73,43 @@ public class StudentsCoursesDao {
                 .append(SEMICOLON)
                 .toString();
     }
+
+    public String getStudentsEnrolledToCourse(String courseName) {
+        StringBuilder output = new StringBuilder();
+        StringBuilder script = new StringBuilder();
+        script.append(SQL_FIND_STUDENTS_ENROLLED_TO_COURSE)
+                .append(QUOTE)
+                .append(courseName)
+                .append(QUOTE)
+                .append(SEMICOLON);
+        output.append("Students enrolled to ")
+                .append(courseName)
+                .append(" course")
+                .append(NEWLINE);
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(script.toString());
+             ResultSet rs = preparedStatement.executeQuery();) {
+            while (rs.next()) {
+                output.append(STUDENT_ID)
+                        .append(rs.getInt(1))
+                        .append(VERTICAL_BAR)
+                        .append(STUDENT_FULL_NAME)
+                        .append(rs.getString(2))
+                        .append(WHITESPACE)
+                        .append(rs.getString(3))
+                        .append(NEWLINE);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return output.toString();
+    }
+
+    /*
+    select ss.student_id, first_name, last_name
+from school.students_courses ssc
+inner join school.courses sc on course_id = sc.id
+inner join school.students ss on ssc.student_id = ss.student_id
+where sc.name = 'History';
+     */
 }
