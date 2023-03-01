@@ -31,6 +31,23 @@ public class StudentsCoursesDao {
             inner join school.students ss on ssc.student_id = ss.student_id
             where sc.name = 
             """;
+    private static final String SQL_ADD_STUDENT_TO_COURSE_FIRST_PART = """
+            insert into school.students_courses (student_id, course_id)
+            select 
+            """;
+    private static final String SQL_ADD_STUDENT_TO_COURSE_SECOND_PART = """
+            , sc.id
+            from school.courses sc
+            where sc.name = 
+            """;
+    private static final String SQL_REMOVE_STUDENT_FROM_COURSE_FIRST_PART = """
+            delete from school.students_courses
+            where student_id = 
+            """;
+    private static final String SQL_REMOVE_STUDENT_FROM_COURSE_SECOND_PART = """
+             and course_id in (select
+            id from school.courses where name = 
+            """;
 
     public void createTable() {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -53,6 +70,7 @@ public class StudentsCoursesDao {
 
     public String createSqlScriptToPopulateStudentsCoursesTable() {
         StringBuilder script = new StringBuilder();
+        //this script could enroll one student to one course 3 times
         script.append(INSERT_QUERY).append(NEWLINE).append(VALUES).append(NEWLINE);
         for (int i = 1; i <= 200; i++) {
             int amountOfCourses = random.nextInt(1,4);
@@ -105,11 +123,40 @@ public class StudentsCoursesDao {
         return output.toString();
     }
 
-    /*
-    select ss.student_id, first_name, last_name
-from school.students_courses ssc
-inner join school.courses sc on course_id = sc.id
-inner join school.students ss on ssc.student_id = ss.student_id
-where sc.name = 'History';
-     */
+    public void addStudentToCourse(int studentId, String courseName) {
+        StringBuilder script = new StringBuilder();
+        script.append(SQL_ADD_STUDENT_TO_COURSE_FIRST_PART)
+                .append(studentId)
+                .append(SQL_ADD_STUDENT_TO_COURSE_SECOND_PART)
+                .append(QUOTE)
+                .append(courseName)
+                .append(QUOTE)
+                .append(SEMICOLON);
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             Statement statement = connection.createStatement();) {
+            statement.execute(script.toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Student enrolled to course");
+    }
+
+    public void removeStudentFromCourse(int studentId, String courseName) {
+        StringBuilder script = new StringBuilder();
+        script.append(SQL_REMOVE_STUDENT_FROM_COURSE_FIRST_PART)
+                .append(studentId)
+                .append(SQL_REMOVE_STUDENT_FROM_COURSE_SECOND_PART)
+                .append(QUOTE)
+                .append(courseName)
+                .append(QUOTE)
+                .append(CLOSE_BRACKET)
+                .append(SEMICOLON);
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             Statement statement = connection.createStatement();) {
+            statement.execute(script.toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Student remover from course");
+    }
 }

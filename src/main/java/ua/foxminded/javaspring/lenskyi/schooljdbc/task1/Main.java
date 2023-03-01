@@ -31,7 +31,11 @@ public class Main {
         studentsCoursesTable.createTable();
         studentsCoursesTable.populateTable();
         //System.out.println(studentsTable.getGroupWithAmountOfStudents(15));
-        System.out.println(studentsCoursesTable.getStudentsEnrolledToCourse("History"));
+        //System.out.println(studentsCoursesTable.getStudentsEnrolledToCourse("History"));
+        studentsTable.addNewStudent(10,"Hello", "World");
+        studentsTable.deleteStudentById(1);
+        studentsCoursesTable.addStudentToCourse(2, "History");
+        studentsCoursesTable.removeStudentFromCourse(9, "Math");
 
         /*
 
