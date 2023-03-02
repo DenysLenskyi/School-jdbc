@@ -1,42 +1,79 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
 
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 public class TablePopulate {
 
-    FileReader reader = new FileReader();
-    private static final String SQL_POPULATE_TABLE_COURSES = "/populate-table-courses.sql";
+    private static Random rand;
 
-    public void populateTables() {
-        populateTableCourse();
-        System.out.println("Tables populated");
-    }
-
-    public void populateTableCourse() {
-        ConnectionManager connectionManager = new ConnectionManager();
-        Connection connection = connectionManager.getConnection();
-        Statement statement = null;
+    static {
         try {
-            statement = connection.createStatement();
-            statement.execute(reader.readFile(SQL_POPULATE_TABLE_COURSES));
-        } catch (Exception e) {
+            rand = SecureRandom.getInstanceStrong();
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-        } finally {
-            ConnectionManager.close(statement);
-            ConnectionManager.close(connection);
         }
     }
 
-    public void populateTableGroup() {
+    FileReader reader = new FileReader();
+    private static final String SQL_POPULATE_TABLE_COURSES = "/populate-table-courses.sql";
+    private static final String SQL_INSERT_INTO_GROUP_TABLE = "INSERT INTO public.group (id, name)";
 
+    public void populateTables() {
+        ConnectionManager connectionManager = new ConnectionManager();
+        try (Connection connection = connectionManager.getConnection();
+             Statement statement = connection.createStatement()) {
+            statement.execute(reader.readFile(SQL_POPULATE_TABLE_COURSES));
+            statement.execute(getSqlScriptToPopulateGroupsTable());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println("Tables populated");
     }
 
-    public void populateTableStudent() {
-
+    public String getSqlScriptToPopulateGroupsTable() {
+        StringBuilder script = new StringBuilder();
+        script.append(SQL_INSERT_INTO_GROUP_TABLE)
+                .append(StringConstant.NEWLINE)
+                .append(StringConstant.VALUES)
+                .append(StringConstant.NEWLINE);
+        for (int i = 1; i <= 10; i++) {
+            script.append(StringConstant.OPEN_BRACKET)
+                    .append(i)
+                    .append(StringConstant.COMA)
+                    .append(StringConstant.WHITESPACE)
+                    .append(StringConstant.QUOTE)
+                    .append(getRandomCharactersUpperCase(2))
+                    .append(StringConstant.HYPHEN)
+                    .append(rand.nextInt(10, 100))
+                    .append(StringConstant.QUOTE)
+                    .append(StringConstant.CLOSE_BRACKET)
+                    .append(StringConstant.COMA)
+                    .append(StringConstant.NEWLINE);
+        }
+        return script.deleteCharAt(script.length() - 1)
+                .deleteCharAt(script.length() - 1)
+                .append(StringConstant.SEMICOLON)
+                .toString();
     }
 
-    public void populateTableCourseStudent() {
-
+    public String getRandomCharactersUpperCase(int n) {
+        byte[] array = new byte[256];
+        rand.nextBytes(array);
+        String randomString = new String(array, StandardCharsets.UTF_8);
+        StringBuilder r = new StringBuilder();
+        for (int k = 0; k < randomString.length(); k++) {
+            char ch = randomString.charAt(k);
+            if ((ch >= 'A' && ch <= 'Z') && (n > 0)) {
+                r.append(ch);
+                n--;
+            }
+        }
+        return r.toString();
     }
 }

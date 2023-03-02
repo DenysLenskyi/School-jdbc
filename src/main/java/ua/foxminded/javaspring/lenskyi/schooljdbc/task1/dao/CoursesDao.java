@@ -29,7 +29,7 @@ public class CoursesDao {
                         .append(StringConstant.VERTICAL_BAR)
                         .append(COURSE_DESCRIPTION)
                         .append(rs.getString(3))
-                        .append(StringConstant.NEW_LINE);
+                        .append(StringConstant.NEWLINE);
             }
         } catch (SQLException e) {
             e.printStackTrace();
