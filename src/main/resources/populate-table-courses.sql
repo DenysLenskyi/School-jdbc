@@ -1,12 +1,12 @@
-INSERT INTO school.courses (id, name, description)
+INSERT INTO courses (id, name, description)
 VALUES
-(1, 'Math', 'Learn basic math operations'),
-(2, 'English', 'How to write and speak, spell'),
-(3, 'Biologic', 'Live organisms knowledge'),
-(4, 'Geography', 'Learn countries'),
-(5, 'Chemistry', 'Learn how to create potions'),
-(6, 'Physics', 'Basic nature science'),
-(7, 'History', 'Myths and fairytale'),
-(8, 'Finance', 'Teaching about safe and spend money'),
-(9, 'Sports', 'Sport games'),
-(10, 'Etiquette', 'How to be gentle with speaking');
+(default, 'Math', 'Learn basic math operations'),
+(default, 'English', 'How to write and speak, spell'),
+(default, 'Biologic', 'Live organisms knowledge'),
+(default, 'Geography', 'Learn countries'),
+(default, 'Chemistry', 'Learn how to create potions'),
+(default, 'Physics', 'Basic nature science'),
+(default, 'History', 'Myths and fairytale'),
+(default, 'Finance', 'Teaching about safe and spend money'),
+(default, 'Sports', 'Sport games'),
+(default, 'Etiquette', 'How to be gentle with speaking');

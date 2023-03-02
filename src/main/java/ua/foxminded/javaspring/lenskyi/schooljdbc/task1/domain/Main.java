@@ -6,6 +6,7 @@ import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StudentsCoursesDao;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StudentsDao;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.TableCreate;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -17,14 +18,16 @@ public class Main {
     StudentsDao studentsTable = new StudentsDao();
     StudentsCoursesDao studentsCoursesTable = new StudentsCoursesDao();
 
-    public static void main(String[] args) throws SQLException {
-
+    public static void main(String[] args) throws SQLException, IOException {
+        DatabaseProperties.getProperties();
         TableCreate tableCreate = new TableCreate();
+        TablePopulate tablePopulate = new TablePopulate();
         tableCreate.createNewTables();
+        tablePopulate.populateTables();
         //Scanner input = new Scanner(System.in);
         // Main main = new Main();
         //main.runApp(input);
-       // input.close();
+        // input.close();
     }
 
     public void createTables() {
@@ -34,6 +37,7 @@ public class Main {
     public void populateTables() {
 
     }
+
     public void runApp(Scanner input) throws SQLException {
 
 
@@ -65,6 +69,7 @@ public class Main {
 
          */
     }
+
     private static String getIdFromString(String str) {
         String[] command = str.split(UNDERSCORE);
         return command[2];

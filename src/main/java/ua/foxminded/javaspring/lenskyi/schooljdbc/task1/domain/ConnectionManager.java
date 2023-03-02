@@ -1,24 +1,19 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
 public class ConnectionManager {
 
-    private String dbConnUrl;
-    private String dbUserName;
-    private String dbPassword;
-
     public Connection getConnection() {
-
+        String Url = DatabaseProperties.getDbUrl();
+        String User = DatabaseProperties.getDbUserName();
+        String Password = DatabaseProperties.getDbPassword();
         try {
-            getProperties();
-            Connection connection = DriverManager.getConnection(dbConnUrl, dbUserName, dbPassword);
+            Connection connection = DriverManager.getConnection(Url, User, Password);
             if (connection != null) {
                 System.out.println("Connection Successful");
             } else {
@@ -27,20 +22,10 @@ public class ConnectionManager {
             return connection;
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             throw e;
         }
         return null;
-    }
-
-    private void getProperties() throws IOException {
-        Properties prop = new Properties();
-        prop.load(getClass().getResourceAsStream("/application.properties"));
-        dbConnUrl = (String) prop.get("db.url");
-        dbUserName = (String) prop.get("db.username");
-        dbPassword = (String) prop.get("db.password");
     }
 
     public static void close(Connection connection) {
