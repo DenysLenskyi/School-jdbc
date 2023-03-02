@@ -9,7 +9,7 @@ public class DatabaseProperties {
     private static String dbUserName;
     private static String dbPassword;
 
-    private DatabaseProperties(){
+    private DatabaseProperties() {
     }
 
     public static void getProperties() throws IOException {

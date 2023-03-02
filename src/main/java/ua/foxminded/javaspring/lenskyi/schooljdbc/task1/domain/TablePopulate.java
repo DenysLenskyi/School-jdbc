@@ -22,8 +22,7 @@ public class TablePopulate {
             statement.execute(reader.readFile(SQL_POPULATE_TABLE_COURSES));
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             ConnectionManager.close(statement);
             ConnectionManager.close(connection);
         }

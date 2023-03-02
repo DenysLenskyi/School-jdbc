@@ -13,17 +13,19 @@ import java.util.Scanner;
 public class Main {
     public static final String EXIT = "exit";
     public static final String UNDERSCORE = "_";
-    CoursesDao coursesTable = new CoursesDao();
+
     GroupsDao groupsTable = new GroupsDao();
     StudentsDao studentsTable = new StudentsDao();
     StudentsCoursesDao studentsCoursesTable = new StudentsCoursesDao();
 
     public static void main(String[] args) throws SQLException, IOException {
         DatabaseProperties.getProperties();
+        CoursesDao coursesTable = new CoursesDao();
         TableCreate tableCreate = new TableCreate();
         TablePopulate tablePopulate = new TablePopulate();
         tableCreate.createNewTables();
         tablePopulate.populateTables();
+        System.out.println(coursesTable.findCourseById("7"));
         //Scanner input = new Scanner(System.in);
         // Main main = new Main();
         //main.runApp(input);

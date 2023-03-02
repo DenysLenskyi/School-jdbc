@@ -9,11 +9,9 @@ import java.sql.Statement;
 public class ConnectionManager {
 
     public Connection getConnection() {
-        String Url = DatabaseProperties.getDbUrl();
-        String User = DatabaseProperties.getDbUserName();
-        String Password = DatabaseProperties.getDbPassword();
         try {
-            Connection connection = DriverManager.getConnection(Url, User, Password);
+            Connection connection = DriverManager.getConnection(DatabaseProperties.getDbUrl(),
+                    DatabaseProperties.getDbUserName(), DatabaseProperties.getDbPassword());
             if (connection != null) {
                 System.out.println("Connection Successful");
             } else {

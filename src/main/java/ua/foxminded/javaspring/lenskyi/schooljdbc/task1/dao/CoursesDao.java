@@ -1,50 +1,39 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.FileReader;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.DatabaseProperties;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.StringConstant;
 
 import java.sql.*;
 
 public class CoursesDao {
-    private final String URL = "jdbc:postgresql://localhost/school_db_lenskyi";
-    private final String USER = "lenskyi";
-    private final String PASSWORD = "lenskyi";
-    private final String INIT_TABLE = "/initiate-table-courses.sql";
-    private final String COURSES_CONTENT = "/populate-table-courses.sql";
-    private final String SQL_FIND_BY_ID = "SELECT ID, NAME, DESCRIPTION FROM school.courses WHERE ID = ";
-    FileReader reader = new FileReader();
 
+    String url = DatabaseProperties.getDbUrl();
+    String user = DatabaseProperties.getDbUserName();
+    String password = DatabaseProperties.getDbPassword();
+    private static final String SQL_FIND_BY_ID = "SELECT ID, NAME, DESCRIPTION FROM course WHERE ID = ";
+    private static final String COURSE_ID = "Course ID: ";
+    private static final String COURSE_NAME = "Course name: ";
+    private static final String COURSE_DESCRIPTION = "Description: ";
 
-    public void createTable() {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             Statement statement = connection.createStatement();) {
-            statement.execute("DROP TABLE IF EXISTS school.courses CASCADE");
-            statement.execute(reader.readFile(INIT_TABLE));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void populateCoursesTable() {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             Statement statement = connection.createStatement();) {
-            statement.execute(reader.readFile(COURSES_CONTENT));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void findById(String id) {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+    public String findCourseById(String id) {
+        StringBuilder output = new StringBuilder();
+        try (Connection connection = DriverManager.getConnection(url, user, password);
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_BY_ID + id);
              ResultSet rs = preparedStatement.executeQuery();) {
             while (rs.next()) {
-                int courseId = rs.getInt(1);
-                String name = rs.getString(2);
-                String descr = rs.getString(3);
-                System.out.println(courseId + "," + name + "," + descr);
+                output.append(COURSE_ID)
+                        .append(rs.getInt(1))
+                        .append(StringConstant.VERTICAL_BAR)
+                        .append(COURSE_NAME)
+                        .append(rs.getString(2))
+                        .append(StringConstant.VERTICAL_BAR)
+                        .append(COURSE_DESCRIPTION)
+                        .append(rs.getString(3))
+                        .append(StringConstant.NEW_LINE);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return output.toString();
     }
 }
