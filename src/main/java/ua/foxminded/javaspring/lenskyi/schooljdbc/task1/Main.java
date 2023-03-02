@@ -11,33 +11,40 @@ import java.util.Scanner;
 public class Main {
     public static final String EXIT = "exit";
     public static final String UNDERSCORE = "_";
+    CoursesDao coursesTable = new CoursesDao();
+    GroupsDao groupsTable = new GroupsDao();
+    StudentsDao studentsTable = new StudentsDao();
+    StudentsCoursesDao studentsCoursesTable = new StudentsCoursesDao();
 
     public static void main(String[] args) throws SQLException {
-        Scanner input = new Scanner(System.in);
-        runApp(input);
-        input.close();
+
+        TableCreate tableCreate = new TableCreate();
+        tableCreate.createNewTables();
+        //Scanner input = new Scanner(System.in);
+        // Main main = new Main();
+        //main.runApp(input);
+       // input.close();
     }
-    public static void runApp(Scanner input) throws SQLException {
-        CoursesDao coursesTable = new CoursesDao();
-        GroupsDao groupsTable = new GroupsDao();
-        StudentsDao studentsTable = new StudentsDao();
-        StudentsCoursesDao studentsCoursesTable = new StudentsCoursesDao();
-        coursesTable.createTable();
-        coursesTable.populateCoursesTable();
-        groupsTable.createTable();
-        groupsTable.populateTable();
-        studentsTable.createTable();
-        studentsTable.populateTable();
-        studentsCoursesTable.createTable();
-        studentsCoursesTable.populateTable();
-        //System.out.println(studentsTable.getGroupWithAmountOfStudents(15));
-        //System.out.println(studentsCoursesTable.getStudentsEnrolledToCourse("History"));
+
+    public void createTables() {
+
+    }
+
+    public void populateTables() {
+
+    }
+    public void runApp(Scanner input) throws SQLException {
+
+
+/*
+        System.out.println(studentsTable.getGroupWithAmountOfStudents(15));
+        System.out.println(studentsCoursesTable.getStudentsEnrolledToCourse("History"));
         studentsTable.addNewStudent(10,"Hello", "World");
         studentsTable.deleteStudentById(1);
         studentsCoursesTable.addStudentToCourse(2, "History");
         studentsCoursesTable.removeStudentFromCourse(9, "Math");
 
-        /*
+
 
 
         System.out.println("Available commands:");
