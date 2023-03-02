@@ -1,4 +1,4 @@
-INSERT INTO courses (id, name, description)
+INSERT INTO course (id, name, description)
 VALUES
 (default, 'Math', 'Learn basic math operations'),
 (default, 'English', 'How to write and speak, spell'),

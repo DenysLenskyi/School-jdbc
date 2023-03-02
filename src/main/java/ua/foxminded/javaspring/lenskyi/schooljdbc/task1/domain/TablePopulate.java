@@ -9,11 +9,11 @@ public class TablePopulate {
     private static final String SQL_POPULATE_TABLE_COURSES = "/populate-table-courses.sql";
 
     public void populateTables() {
-        populateTableCourses();
+        populateTableCourse();
         System.out.println("Tables populated");
     }
 
-    public void populateTableCourses() {
+    public void populateTableCourse() {
         ConnectionManager connectionManager = new ConnectionManager();
         Connection connection = connectionManager.getConnection();
         Statement statement = null;
@@ -27,5 +27,17 @@ public class TablePopulate {
             ConnectionManager.close(statement);
             ConnectionManager.close(connection);
         }
+    }
+
+    public void populateTableGroup() {
+
+    }
+
+    public void populateTableStudent() {
+
+    }
+
+    public void populateTableCourseStudent() {
+
     }
 }
