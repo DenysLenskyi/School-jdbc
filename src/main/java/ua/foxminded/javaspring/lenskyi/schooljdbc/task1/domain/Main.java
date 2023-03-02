@@ -1,9 +1,10 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.CoursesDao;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.GroupsDao;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StudentsCoursesDao;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StudentsDao;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.TableCreate;
 
 import java.sql.SQLException;
 import java.util.Scanner;

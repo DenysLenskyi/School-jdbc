@@ -1,6 +1,6 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.FileReader;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.FileReader;
 
 import java.nio.charset.Charset;
 import java.sql.*;

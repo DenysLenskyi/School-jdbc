@@ -1,4 +1,4 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
 
 import java.sql.Connection;
 import java.sql.Statement;
@@ -22,5 +22,6 @@ public class TableCreate {
             ConnectionManager.close(connection);
             ConnectionManager.close(statement);
         }
+        System.out.println("Tables created");
     }
 }

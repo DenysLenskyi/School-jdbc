@@ -61,7 +61,7 @@
                     <manifest>
                         <addClasspath>true</addClasspath>
                         <classpathPrefix>lib/</classpathPrefix>
-                        <mainClass>${mainClassToLoad}</mainClass>
+                        <mainClass>ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.Main</mainClass>
                     </manifest>
                 </archive>
             </configuration>
