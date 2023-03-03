@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        DatabaseProperties.getProperties();
+        DatabaseProperties properties = new DatabaseProperties();
         CourseDao coursesTable = new CourseDao();
         TableCreate tableCreate = new TableCreate();
         TablePopulate tablePopulate = new TablePopulate();

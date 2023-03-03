@@ -1,12 +1,11 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.ConnectionManager;
+
 import java.sql.*;
 
 public class CourseDao {
 
-    String url = DatabaseProperties.getDbUrl();
-    String user = DatabaseProperties.getDbUserName();
-    String password = DatabaseProperties.getDbPassword();
     private static final String SQL_FIND_BY_ID = "SELECT ID, NAME, DESCRIPTION FROM course WHERE ID = ";
     private static final String COURSE_ID = "Course ID: ";
     private static final String COURSE_NAME = "Course name: ";
@@ -14,7 +13,8 @@ public class CourseDao {
 
     public String findCourseById(String id) {
         StringBuilder output = new StringBuilder();
-        try (Connection connection = DriverManager.getConnection(url, user, password);
+        ConnectionManager connectionManager = new ConnectionManager();
+        try (Connection connection = connectionManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_BY_ID + id);
              ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {

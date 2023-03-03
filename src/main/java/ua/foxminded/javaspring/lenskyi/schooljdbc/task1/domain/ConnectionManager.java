@@ -12,9 +12,10 @@ public class ConnectionManager {
 
     public Connection getConnection() {
         try {
-            Class.forName(DatabaseProperties.getDriverName());
-            Connection connection = DriverManager.getConnection(DatabaseProperties.getDbUrl(),
-                    DatabaseProperties.getDbUserName(), DatabaseProperties.getDbPassword());
+
+            Class.forName(DatabaseProperties.DB_DRIVER_NAME);
+            Connection connection = DriverManager.getConnection(DatabaseProperties.DB_URL,
+                    DatabaseProperties.DB_USER, DatabaseProperties.DB_PASSWORD);
             if (connection != null) {
                 System.out.println("Connection Successful");
             } else {
