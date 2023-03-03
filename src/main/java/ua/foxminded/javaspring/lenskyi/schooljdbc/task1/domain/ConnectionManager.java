@@ -1,5 +1,7 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
 
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.DatabaseProperties;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

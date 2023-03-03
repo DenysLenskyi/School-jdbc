@@ -2,7 +2,7 @@ package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
 import java.sql.*;
 
-public class StudentsDao {
+public class StudentDao {
     private final String URL = "jdbc:postgresql://localhost/SchoolJDBC";
     private final String USER = "postgres";
     private final String PASSWORD = "666";

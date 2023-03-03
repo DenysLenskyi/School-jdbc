@@ -1,11 +1,8 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.DatabaseProperties;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.StringConstant;
-
 import java.sql.*;
 
-public class CoursesDao {
+public class CourseDao {
 
     String url = DatabaseProperties.getDbUrl();
     String user = DatabaseProperties.getDbUserName();
@@ -19,7 +16,7 @@ public class CoursesDao {
         StringBuilder output = new StringBuilder();
         try (Connection connection = DriverManager.getConnection(url, user, password);
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_BY_ID + id);
-             ResultSet rs = preparedStatement.executeQuery();) {
+             ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {
                 output.append(COURSE_ID)
                         .append(rs.getInt(1))

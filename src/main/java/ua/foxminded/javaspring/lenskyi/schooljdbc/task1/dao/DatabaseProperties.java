@@ -1,4 +1,4 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
 import java.io.IOException;
 import java.util.Properties;

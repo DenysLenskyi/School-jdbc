@@ -1,4 +1,4 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
 public class StringConstant {
 
@@ -15,4 +15,8 @@ public class StringConstant {
     public static final String QUOTE = "'";
     public static final String HYPHEN = "-";
     public static final String SEMICOLON = ";";
+    public static final String NAMES_TXT = "/names.txt";
+    public static final String DEFAULT = "DEFAULT";
+    public static final String NULL = "NULL";
+    public static final String SON = "son";
 }

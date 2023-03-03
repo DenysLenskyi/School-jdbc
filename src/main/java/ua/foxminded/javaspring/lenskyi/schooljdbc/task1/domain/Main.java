@@ -1,26 +1,16 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
 
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.CoursesDao;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.GroupsDao;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StudentsCoursesDao;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StudentsDao;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.TableCreate;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    public static final String EXIT = "exit";
-    public static final String UNDERSCORE = "_";
 
-    GroupsDao groupsTable = new GroupsDao();
-    StudentsDao studentsTable = new StudentsDao();
-    StudentsCoursesDao studentsCoursesTable = new StudentsCoursesDao();
-
-    public static void main(String[] args) throws SQLException, IOException {
+    public static void main(String[] args) throws IOException {
         DatabaseProperties.getProperties();
-        CoursesDao coursesTable = new CoursesDao();
+        CourseDao coursesTable = new CourseDao();
         TableCreate tableCreate = new TableCreate();
         TablePopulate tablePopulate = new TablePopulate();
         tableCreate.createNewTables();
@@ -32,28 +22,14 @@ public class Main {
         // input.close();
     }
 
-    public void createTables() {
-
-    }
-
-    public void populateTables() {
-
-    }
-
+    /*
     public void runApp(Scanner input) throws SQLException {
-
-
-/*
         System.out.println(studentsTable.getGroupWithAmountOfStudents(15));
         System.out.println(studentsCoursesTable.getStudentsEnrolledToCourse("History"));
         studentsTable.addNewStudent(10,"Hello", "World");
         studentsTable.deleteStudentById(1);
         studentsCoursesTable.addStudentToCourse(2, "History");
         studentsCoursesTable.removeStudentFromCourse(9, "Math");
-
-
-
-
         System.out.println("Available commands:");
         System.out.println(EXIT + " - quit APP");
         System.out.println("find_course_<id> - prints course by <id>");
@@ -69,11 +45,13 @@ public class Main {
             runApp(input);
         }
 
-         */
+
     }
 
     private static String getIdFromString(String str) {
         String[] command = str.split(UNDERSCORE);
         return command[2];
     }
+
+     */
 }
