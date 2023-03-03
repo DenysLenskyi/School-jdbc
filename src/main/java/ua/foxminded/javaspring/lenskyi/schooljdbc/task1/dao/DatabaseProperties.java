@@ -8,6 +8,7 @@ public class DatabaseProperties {
     private static String dbUrl;
     private static String dbUserName;
     private static String dbPassword;
+    private static String driverName;
 
     private DatabaseProperties() {
     }
@@ -18,6 +19,7 @@ public class DatabaseProperties {
         dbUrl = (String) prop.get("db.url");
         dbUserName = (String) prop.get("db.username");
         dbPassword = (String) prop.get("db.password");
+        driverName = (String) prop.get("driver_name");
     }
 
     public static String getDbUrl() {
@@ -30,5 +32,9 @@ public class DatabaseProperties {
 
     public static String getDbPassword() {
         return dbPassword;
+    }
+
+    public static String getDriverName() {
+        return driverName;
     }
 }

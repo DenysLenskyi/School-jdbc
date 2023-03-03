@@ -12,6 +12,7 @@ public class ConnectionManager {
 
     public Connection getConnection() {
         try {
+            Class.forName(DatabaseProperties.getDriverName());
             Connection connection = DriverManager.getConnection(DatabaseProperties.getDbUrl(),
                     DatabaseProperties.getDbUserName(), DatabaseProperties.getDbPassword());
             if (connection != null) {
@@ -23,7 +24,11 @@ public class ConnectionManager {
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
-            throw e;
+            try {
+                throw e;
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
         }
         return null;
     }
