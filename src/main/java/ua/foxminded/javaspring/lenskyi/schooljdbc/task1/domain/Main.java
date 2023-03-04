@@ -3,8 +3,6 @@ package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.*;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Scanner;
 
 public class Main {
 
@@ -16,6 +14,13 @@ public class Main {
         TablePopulate tablePopulate = new TablePopulate();
         tableCreate.createNewTables();
         tablePopulate.populateTables();
+        StudentDao studentTable = new StudentDao();
+        System.out.println(studentTable.getGroupWithLessOrEqualAmountOfStudents(20));
+        studentTable.addNewStudent(10,"Hello", "World");
+        studentTable.deleteStudentById(1);
+        studentTable.deleteStudentById(3);
+        studentTable.deleteStudentById(4);
+        studentTable.addNewStudent(1, "Well", "Hello");
         System.out.println(coursesTable.findCourseById("7"));
         studentCourseTable.addStudentToCourse(2, "History");
         studentCourseTable.removeStudentFromCourse(2, "History");

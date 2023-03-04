@@ -33,7 +33,6 @@ public class StudentCourseDao {
             """;
 
 
-
     public String getStudentsEnrolledToCourse(String courseName) {
         StringBuilder output = new StringBuilder();
         StringBuilder script = new StringBuilder();
