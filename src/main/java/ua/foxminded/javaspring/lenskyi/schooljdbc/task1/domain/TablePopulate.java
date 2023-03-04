@@ -1,5 +1,6 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
 
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.ConnectionManager;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StringConstant;
 
 import java.nio.charset.StandardCharsets;

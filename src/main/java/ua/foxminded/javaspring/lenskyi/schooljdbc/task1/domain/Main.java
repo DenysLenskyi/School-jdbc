@@ -11,11 +11,15 @@ public class Main {
     public static void main(String[] args) throws IOException {
         DatabaseProperties properties = new DatabaseProperties();
         CourseDao coursesTable = new CourseDao();
+        StudentCourseDao studentCourseTable = new StudentCourseDao();
         TableCreate tableCreate = new TableCreate();
         TablePopulate tablePopulate = new TablePopulate();
         tableCreate.createNewTables();
         tablePopulate.populateTables();
         System.out.println(coursesTable.findCourseById("7"));
+        studentCourseTable.addStudentToCourse(2, "History");
+        studentCourseTable.removeStudentFromCourse(2, "History");
+        System.out.println(studentCourseTable.getStudentsEnrolledToCourse("History"));
         //Scanner input = new Scanner(System.in);
         // Main main = new Main();
         //main.runApp(input);
