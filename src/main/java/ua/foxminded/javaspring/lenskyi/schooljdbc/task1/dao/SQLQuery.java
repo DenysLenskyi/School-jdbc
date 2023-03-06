@@ -1,8 +1,10 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.FileReader;
-
 public class SQLQuery {
-    static FileReader reader = new FileReader();
-    public static final String initiateTablesQuery = reader.readFile("/initiate-tables.sql");
+    private SQLQuery() {}
+    public static String initiateTablesQuery;
+    public static String populateTableCourse;
+    public static String populateTableGroup;
+    public static String populateTableStudent;
+    public static String populateTableStudentCourse;
 }

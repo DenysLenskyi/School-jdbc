@@ -5,12 +5,14 @@ import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.*;
 public class Main {
 
     public static void main(String[] args) {
+        QueryBuilder queryBuilder = new QueryBuilder();
+        queryBuilder.buildQueries();
         CourseDao coursesTable = new CourseDao();
         StudentCourseDao studentCourseTable = new StudentCourseDao();
         TableCreateDao tableCreateDao = new TableCreateDao();
-        TablePopulate tablePopulate = new TablePopulate();
+        TablePopulateDao tablePopulateDao = new TablePopulateDao();
         tableCreateDao.createNewTables();
-        tablePopulate.populateTables();
+        tablePopulateDao.populateTables();
         StudentDao studentTable = new StudentDao();
         System.out.println(studentTable.getGroupWithLessOrEqualAmountOfStudents(20));
         studentTable.addNewStudent(10,"Hello", "World");
