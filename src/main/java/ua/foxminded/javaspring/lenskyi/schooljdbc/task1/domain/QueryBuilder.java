@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class QueryBuilder {
 
-    FileReader reader = new FileReader();
+    static FileReader reader = new FileReader();
     private static Random rand;
 
     static {
@@ -37,15 +37,15 @@ public class QueryBuilder {
         setPopulateStudentCourseTableQuery();
     }
 
-    private void setInitiateTablesQuery() {
+    private static void setInitiateTablesQuery() {
         SQLQuery.initiateTablesQuery = reader.readFile(TABLES_INITIATION_SCRIPT_FILE_NAME);
     }
 
-    private void setPopulateCourseTableQuery() {
+    private static void setPopulateCourseTableQuery() {
         SQLQuery.populateTableCourse = reader.readFile(COURSE_TABLE_POPULATION_SCRIPT_FILE_NAME);
     }
 
-    private void setPopulateGroupTableQuery() {
+    private static void setPopulateGroupTableQuery() {
         StringBuilder script = new StringBuilder();
         script.append(SQL_INSERT_INTO_GROUP_TABLE)
                 .append(StringConstant.NEWLINE)
@@ -71,7 +71,7 @@ public class QueryBuilder {
         SQLQuery.populateTableGroup = script.toString();
     }
 
-    private String getRandomCharactersUpperCase(int n) {
+    private static String getRandomCharactersUpperCase(int n) {
         byte[] array = new byte[256];
         rand.nextBytes(array);
         String randomString = new String(array, StandardCharsets.UTF_8);
@@ -86,7 +86,7 @@ public class QueryBuilder {
         return r.toString();
     }
 
-    private void setPopulateStudentTableQuery() {
+    private static void setPopulateStudentTableQuery() {
         StringBuilder script = new StringBuilder();
         script.append(SQL_INSERT_INTO_STUDENT_TABLE)
                 .append(StringConstant.NEWLINE)
@@ -135,7 +135,7 @@ public class QueryBuilder {
         SQLQuery.populateTableStudent = script.toString();
     }
 
-    private void setPopulateStudentCourseTableQuery() {
+    private static void setPopulateStudentCourseTableQuery() {
         StringBuilder script = new StringBuilder(); //this script could enroll one student to one course 3 times
         script.append(SQL_INSERT_INTO_STUDENT_COURSE_TABLE)
                 .append(StringConstant.NEWLINE)

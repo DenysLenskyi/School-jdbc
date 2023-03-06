@@ -4,6 +4,8 @@ import java.util.Properties;
 
 public class DatabaseProperties {
 
+    private DatabaseProperties() {}
+
     public static String DB_URL;
     public static String DB_USER;
     public static String DB_PASSWORD;
