@@ -9,13 +9,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class TableCreateTest {
+public class TableCreateDaoTest {
     @Test
     void tablePopulateTest() {
         Properties properties = new Properties();
         FileReader reader = new FileReader();
         try {
-            properties.load(TableCreateTest.class.getResourceAsStream("/application.properties"));
+            properties.load(TableCreateDaoTest.class.getResourceAsStream("/application.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }

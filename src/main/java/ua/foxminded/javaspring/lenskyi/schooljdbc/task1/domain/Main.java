@@ -7,9 +7,9 @@ public class Main {
     public static void main(String[] args) {
         CourseDao coursesTable = new CourseDao();
         StudentCourseDao studentCourseTable = new StudentCourseDao();
-        TableCreate tableCreate = new TableCreate();
+        TableCreateDao tableCreateDao = new TableCreateDao();
         TablePopulate tablePopulate = new TablePopulate();
-        tableCreate.createNewTables();
+        tableCreateDao.createNewTables();
         tablePopulate.populateTables();
         StudentDao studentTable = new StudentDao();
         System.out.println(studentTable.getGroupWithLessOrEqualAmountOfStudents(20));

@@ -1,7 +1,7 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.ConnectionManager;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StringConstant;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.FileReader;
+
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
