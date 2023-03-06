@@ -48,6 +48,4 @@ e. Add a student to the course (from a list)
 
 f. Remove the student from one of their courses.
 
-Database name: db_school_lenskyi
-User: lenskyi
-Password: lenskyi
+Database name: db_school_lenskyi; User: lenskyi; Password: lenskyi
