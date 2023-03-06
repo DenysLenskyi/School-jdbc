@@ -11,17 +11,11 @@ public class TableCreate {
     FileReader reader = new FileReader();
 
     public void createNewTables() {
-        ConnectionManager connectionManager = new ConnectionManager();
-        Connection connection = connectionManager.getConnection();
-        Statement statement = null;
-        try {
-            statement = connection.createStatement();
+        try (Connection connection = ConnectionManager.getConnection();
+             Statement statement = connection.createStatement()) {
             statement.execute(reader.readFile(SQL_INIT_TABLES));
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            ConnectionManager.close(statement);
-            ConnectionManager.close(connection);
         }
         System.out.println("Tables created");
     }

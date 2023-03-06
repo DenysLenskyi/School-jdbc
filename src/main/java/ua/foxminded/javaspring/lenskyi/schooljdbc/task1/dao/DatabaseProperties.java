@@ -13,10 +13,10 @@ public class DatabaseProperties {
         try {
             Properties prop = new Properties();
             prop.load(DatabaseProperties.class.getResourceAsStream("/application.properties"));
-            DB_URL = prop.get("db.url").toString();
-            DB_USER = prop.get("db.username").toString();
-            DB_PASSWORD = prop.get("db.password").toString();
-            DB_DRIVER_NAME = prop.get("db.driver").toString();
+            DB_URL = prop.getProperty("db.url");
+            DB_USER = prop.getProperty("db.username");
+            DB_PASSWORD = prop.getProperty("db.password");
+            DB_DRIVER_NAME = prop.getProperty("db.driver");
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);

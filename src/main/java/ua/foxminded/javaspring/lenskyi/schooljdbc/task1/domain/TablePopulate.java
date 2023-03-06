@@ -2,7 +2,6 @@ package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.ConnectionManager;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StringConstant;
-
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -32,8 +31,7 @@ public class TablePopulate {
             "INSERT INTO student (id, group_id, first_name, last_name)";
 
     public void populateTables() {
-        ConnectionManager connectionManager = new ConnectionManager();
-        try (Connection connection = connectionManager.getConnection();
+        try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement()) {
             statement.execute(reader.readFile(SQL_POPULATE_TABLE_COURSES));
             statement.execute(getSqlScriptToPopulateGroupTable());

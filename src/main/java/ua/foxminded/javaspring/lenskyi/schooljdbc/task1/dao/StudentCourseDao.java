@@ -4,7 +4,6 @@ import java.sql.*;
 
 public class StudentCourseDao {
 
-    ConnectionManager connectionManager = new ConnectionManager();
     public static final String STUDENT_ID = "Student ID: ";
     public static final String STUDENT_FULL_NAME = "Student name: ";
     private static final String SQL_FIND_STUDENTS_ENROLLED_TO_COURSE = """
@@ -45,7 +44,7 @@ public class StudentCourseDao {
                 .append(courseName)
                 .append(" course")
                 .append(StringConstant.NEWLINE);
-        try (Connection connection = connectionManager.getConnection();
+        try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(script.toString());
              ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {
@@ -73,7 +72,7 @@ public class StudentCourseDao {
                 .append(courseName)
                 .append(StringConstant.QUOTE)
                 .append(StringConstant.SEMICOLON);
-        try (Connection connection = connectionManager.getConnection();
+        try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement();) {
             statement.execute(script.toString());
         } catch (SQLException e) {
@@ -92,7 +91,7 @@ public class StudentCourseDao {
                 .append(StringConstant.QUOTE)
                 .append(StringConstant.CLOSE_BRACKET)
                 .append(StringConstant.SEMICOLON);
-        try (Connection connection = connectionManager.getConnection();
+        try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement();) {
             statement.execute(script.toString());
         } catch (SQLException e) {

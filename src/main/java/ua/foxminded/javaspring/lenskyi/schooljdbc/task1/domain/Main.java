@@ -2,12 +2,9 @@ package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.*;
 
-import java.io.IOException;
-
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        DatabaseProperties properties = new DatabaseProperties();
+    public static void main(String[] args) {
         CourseDao coursesTable = new CourseDao();
         StudentCourseDao studentCourseTable = new StudentCourseDao();
         TableCreate tableCreate = new TableCreate();

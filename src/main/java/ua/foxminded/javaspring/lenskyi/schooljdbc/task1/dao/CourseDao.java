@@ -11,8 +11,7 @@ public class CourseDao {
 
     public String findCourseById(String id) {
         StringBuilder output = new StringBuilder();
-        ConnectionManager connectionManager = new ConnectionManager();
-        try (Connection connection = connectionManager.getConnection();
+        try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_BY_ID + id);
              ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {

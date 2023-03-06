@@ -4,7 +4,6 @@ import java.sql.*;
 
 public class StudentDao {
 
-    ConnectionManager connectionManager = new ConnectionManager();
     private static final String GROUP_ID = "Group ID: ";
     private static final String GROUP_NAME = "Group name: ";
     private static final String NUM_STUDENTS = "Students in group: ";
@@ -28,7 +27,7 @@ public class StudentDao {
                 .append(numStudents)
                 .append(" students")
                 .append(StringConstant.NEWLINE);
-        try (Connection connection = connectionManager.getConnection();
+        try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(script.toString());
              ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {
@@ -72,7 +71,7 @@ public class StudentDao {
                     .append(StringConstant.QUOTE)
                     .append(StringConstant.CLOSE_BRACKET)
                     .append(StringConstant.SEMICOLON);
-            try (Connection connection = connectionManager.getConnection();
+            try (Connection connection = ConnectionManager.getConnection();
                  Statement statement = connection.createStatement()) {
                 statement.execute(script.toString());
             } catch (SQLException e) {
@@ -89,7 +88,7 @@ public class StudentDao {
         script.append(SQL_DELETE_STUDENT_BY_ID)
                 .append(studentId)
                 .append(StringConstant.SEMICOLON);
-        try (Connection connection = connectionManager.getConnection();
+        try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement()) {
             statement.execute(script.toString());
         } catch (SQLException e) {
