@@ -1,5 +1,7 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
 
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.Command;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CreateTablesCommand;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.*;
 
 public class Main {
@@ -9,9 +11,9 @@ public class Main {
         queryBuilder.buildQueries();
         CourseDao coursesTable = new CourseDao();
         StudentCourseDao studentCourseTable = new StudentCourseDao();
-        TableCreateDao tableCreateDao = new TableCreateDao();
         TablePopulateDao tablePopulateDao = new TablePopulateDao();
-        tableCreateDao.createNewTables();
+        Command createTables = new CreateTablesCommand();
+        createTables.execute();
         tablePopulateDao.populateTables();
         StudentDao studentTable = new StudentDao();
         System.out.println(studentTable.getGroupWithLessOrEqualAmountOfStudents(20));

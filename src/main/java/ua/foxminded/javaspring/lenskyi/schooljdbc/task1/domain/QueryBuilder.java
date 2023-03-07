@@ -30,14 +30,14 @@ public class QueryBuilder {
             "INSERT INTO student (id, group_id, first_name, last_name)";
 
     public void buildQueries() {
-        setInitiateTablesQuery();
+        //setInitiateTablesQuery();
         setPopulateCourseTableQuery();
         setPopulateGroupTableQuery();
         setPopulateStudentTableQuery();
         setPopulateStudentCourseTableQuery();
     }
 
-    private static void setInitiateTablesQuery() {
+    public void setInitiateTablesQuery() {
         SQLQuery.initiateTablesQuery = reader.readFile(TABLES_INITIATION_SCRIPT_FILE_NAME);
     }
 
