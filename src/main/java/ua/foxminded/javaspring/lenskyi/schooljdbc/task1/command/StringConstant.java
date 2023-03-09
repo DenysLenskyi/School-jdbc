@@ -1,4 +1,4 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command;
 
 public class StringConstant {
 

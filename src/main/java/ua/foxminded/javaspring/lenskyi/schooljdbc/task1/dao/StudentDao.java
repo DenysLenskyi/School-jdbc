@@ -1,5 +1,7 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.StringConstant;
+
 import java.sql.*;
 
 public class StudentDao {

@@ -1,19 +1,20 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
 
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandExecutor;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CreateTablesCommand;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.*;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandDefendant;
 
 public class Main {
 
     public static void main(String[] args) {
+        CommandDefendant commandDefendant = new CommandDefendant();
+        commandDefendant.findCommand("100").execute();
+        commandDefendant.findCommand("110").execute();
+
+        /*
         QueryBuilder queryBuilder = new QueryBuilder();
         queryBuilder.buildQueries();
-        CommandExecutor executor = new CommandExecutor();
         CourseDao coursesTable = new CourseDao();
         StudentCourseDao studentCourseTable = new StudentCourseDao();
         TablePopulateDao tablePopulateDao = new TablePopulateDao();
-        executor.executeCommand(new CreateTablesCommand());
         tablePopulateDao.populateTables();
         StudentDao studentTable = new StudentDao();
         System.out.println(studentTable.getGroupWithLessOrEqualAmountOfStudents(20));
@@ -30,6 +31,8 @@ public class Main {
         // Main main = new Main();
         //main.runApp(input);
         // input.close();
+
+         */
     }
 
     /*

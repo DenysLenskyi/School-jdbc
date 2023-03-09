@@ -5,10 +5,10 @@ import java.sql.Statement;
 
 public class TableCreateDao {
 
-    public void createNewTables() {
+    public void createNewTables(String sql) {
         try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement()) {
-            statement.execute(SQLQuery.initiateTablesQuery);
+            statement.execute(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }

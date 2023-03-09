@@ -1,6 +1,7 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
 
 import org.junit.jupiter.api.Test;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils.FileReader;
 
 import java.io.IOException;
 import java.sql.Connection;

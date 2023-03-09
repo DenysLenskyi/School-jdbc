@@ -1,4 +1,4 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

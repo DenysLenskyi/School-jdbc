@@ -63,7 +63,7 @@
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.Main</mainClass>
+                        <mainClass>ua.foxminded.javaspring.lenskyi.schooljdbc.task1.Main</mainClass>
                     </manifest>
                 </archive>
                 <descriptorRefs>
@@ -89,7 +89,7 @@
                     <manifest>
                         <addClasspath>true</addClasspath>
                         <classpathPrefix>lib/</classpathPrefix>
-                        <mainClass>ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain.Main</mainClass>
+                        <mainClass>ua.foxminded.javaspring.lenskyi.schooljdbc.task1.Main</mainClass>
                     </manifest>
                 </archive>
             </configuration>

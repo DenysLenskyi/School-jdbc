@@ -1,8 +1,6 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.domain;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command;
 
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.SQLQuery;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.StringConstant;
-
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -29,23 +27,16 @@ public class QueryBuilder {
     private static final String SQL_INSERT_INTO_STUDENT_TABLE =
             "INSERT INTO student (id, group_id, first_name, last_name)";
 
-    public void buildQueries() {
-        //setInitiateTablesQuery();
-        setPopulateCourseTableQuery();
-        setPopulateGroupTableQuery();
-        setPopulateStudentTableQuery();
-        setPopulateStudentCourseTableQuery();
+
+    public String getInitiateTablesQuery() {
+        return reader.readFile(TABLES_INITIATION_SCRIPT_FILE_NAME);
     }
 
-    public void setInitiateTablesQuery() {
-        SQLQuery.initiateTablesQuery = reader.readFile(TABLES_INITIATION_SCRIPT_FILE_NAME);
+    public String getPopulateCourseTableQuery() {
+        return reader.readFile(COURSE_TABLE_POPULATION_SCRIPT_FILE_NAME);
     }
 
-    private static void setPopulateCourseTableQuery() {
-        SQLQuery.populateTableCourse = reader.readFile(COURSE_TABLE_POPULATION_SCRIPT_FILE_NAME);
-    }
-
-    private static void setPopulateGroupTableQuery() {
+    public String getPopulateGroupTableQuery() {
         StringBuilder script = new StringBuilder();
         script.append(SQL_INSERT_INTO_GROUP_TABLE)
                 .append(StringConstant.NEWLINE)
@@ -65,10 +56,10 @@ public class QueryBuilder {
                     .append(StringConstant.COMA)
                     .append(StringConstant.NEWLINE);
         }
-        script.deleteCharAt(script.length() - 1)
+        return script.deleteCharAt(script.length() - 1)
                 .deleteCharAt(script.length() - 1)
-                .append(StringConstant.SEMICOLON);
-        SQLQuery.populateTableGroup = script.toString();
+                .append(StringConstant.SEMICOLON)
+                .toString();
     }
 
     private static String getRandomCharactersUpperCase(int n) {
@@ -86,7 +77,7 @@ public class QueryBuilder {
         return r.toString();
     }
 
-    private static void setPopulateStudentTableQuery() {
+    public String getPopulateStudentTableQuery() {
         StringBuilder script = new StringBuilder();
         script.append(SQL_INSERT_INTO_STUDENT_TABLE)
                 .append(StringConstant.NEWLINE)
@@ -129,13 +120,13 @@ public class QueryBuilder {
                         .append(StringConstant.NEWLINE);
             }
         }
-        script.deleteCharAt(script.length() - 1)
+        return script.deleteCharAt(script.length() - 1)
                 .deleteCharAt(script.length() - 1)
-                .append(StringConstant.SEMICOLON);
-        SQLQuery.populateTableStudent = script.toString();
+                .append(StringConstant.SEMICOLON)
+                .toString();
     }
 
-    private static void setPopulateStudentCourseTableQuery() {
+    public String getPopulateStudentCourseTableQuery() {
         StringBuilder script = new StringBuilder(); //this script could enroll one student to one course 3 times
         script.append(SQL_INSERT_INTO_STUDENT_COURSE_TABLE)
                 .append(StringConstant.NEWLINE)
@@ -155,9 +146,9 @@ public class QueryBuilder {
                 amountOfCourses--;
             }
         }
-        script.deleteCharAt(script.length() - 1)
+        return script.deleteCharAt(script.length() - 1)
                 .deleteCharAt(script.length() - 1)
-                .append(StringConstant.SEMICOLON);
-        SQLQuery.populateTableStudentCourse = script.toString();
+                .append(StringConstant.SEMICOLON)
+                .toString();
     }
 }
