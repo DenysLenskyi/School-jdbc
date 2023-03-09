@@ -1,6 +1,7 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils.FileReader;
+
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -26,6 +27,11 @@ public class QueryBuilder {
             "INSERT INTO student_course (STUDENT_ID, COURSE_ID)";
     private static final String SQL_INSERT_INTO_STUDENT_TABLE =
             "INSERT INTO student (id, group_id, first_name, last_name)";
+
+    private static final String SQL_FIND_COURSE_BY_ID = "SELECT ID, NAME, DESCRIPTION FROM public.course WHERE ID = ";
+    private static final String COURSE_ID = "Course ID: ";
+    private static final String COURSE_NAME = "Course name: ";
+    private static final String COURSE_DESCRIPTION = "Description: ";
 
 
     public String getInitiateTablesQuery() {
@@ -148,6 +154,14 @@ public class QueryBuilder {
         }
         return script.deleteCharAt(script.length() - 1)
                 .deleteCharAt(script.length() - 1)
+                .append(StringConstant.SEMICOLON)
+                .toString();
+    }
+
+    public String getFindCourseByIdScript(int courseId) {
+        StringBuilder script = new StringBuilder();
+        return script.append(SQL_FIND_COURSE_BY_ID)
+                .append(courseId)
                 .append(StringConstant.SEMICOLON)
                 .toString();
     }

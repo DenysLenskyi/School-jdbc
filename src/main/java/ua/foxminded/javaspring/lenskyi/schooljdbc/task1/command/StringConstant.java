@@ -19,4 +19,5 @@ public class StringConstant {
     public static final String DEFAULT = "DEFAULT";
     public static final String NULL = "NULL";
     public static final String SON = "son";
+    public static final String UNDERSCORE = "_";
 }
