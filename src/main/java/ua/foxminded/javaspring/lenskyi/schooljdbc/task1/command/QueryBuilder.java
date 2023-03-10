@@ -1,7 +1,6 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils.FileReader;
-
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -22,16 +21,14 @@ public class QueryBuilder {
 
     private static final String TABLES_INITIATION_SCRIPT_FILE_NAME = "/initiate-tables.sql";
     private static final String COURSE_TABLE_POPULATION_SCRIPT_FILE_NAME = "/populate-table-course.sql";
-    private static final String SQL_INSERT_INTO_GROUP_TABLE = "INSERT INTO public.group (id, name)";
+    private static final String SQL_INSERT_INTO_GROUP_TABLE =
+            "TRUNCATE TABLE public.group CASCADE; INSERT INTO public.group (id, name)";
     private static final String SQL_INSERT_INTO_STUDENT_COURSE_TABLE =
-            "INSERT INTO student_course (STUDENT_ID, COURSE_ID)";
+            "TRUNCATE TABLE student_course CASCADE; INSERT INTO student_course (STUDENT_ID, COURSE_ID)";
     private static final String SQL_INSERT_INTO_STUDENT_TABLE =
-            "INSERT INTO student (id, group_id, first_name, last_name)";
+            "TRUNCATE TABLE student CASCADE; INSERT INTO student (id, group_id, first_name, last_name)";
 
     private static final String SQL_FIND_COURSE_BY_ID = "SELECT ID, NAME, DESCRIPTION FROM public.course WHERE ID = ";
-    private static final String COURSE_ID = "Course ID: ";
-    private static final String COURSE_NAME = "Course name: ";
-    private static final String COURSE_DESCRIPTION = "Description: ";
 
 
     public String getInitiateTablesQuery() {
@@ -50,7 +47,7 @@ public class QueryBuilder {
                 .append(StringConstant.NEWLINE);
         for (int i = 1; i <= 10; i++) {
             script.append(StringConstant.OPEN_BRACKET)
-                    .append(i)
+                    .append(StringConstant.DEFAULT)
                     .append(StringConstant.COMA)
                     .append(StringConstant.WHITESPACE)
                     .append(StringConstant.QUOTE)

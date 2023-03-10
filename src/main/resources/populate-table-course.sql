@@ -1,3 +1,4 @@
+TRUNCATE TABLE course CASCADE;
 INSERT INTO course (id, name, description)
 VALUES
 (default, 'Math', 'Learn basic math operations'),
