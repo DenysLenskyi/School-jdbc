@@ -9,6 +9,7 @@ public class Main {
         commandDefendant.findCommand("100").execute();
         commandDefendant.findCommand("110").execute();
         commandDefendant.findCommand("findcourse_7").execute();
+        commandDefendant.findCommand("info").execute();
 
         /*
         QueryBuilder queryBuilder = new QueryBuilder();
