@@ -13,7 +13,8 @@ public class Main {
         CommandDefendant commandDefendant = new CommandDefendant();
         commandDefendant.findCommand("100").execute();
         commandDefendant.findCommand("110").execute();
-        UserInteraction.runApp(scanner);
-        scanner.close();
+        //UserInteraction.runApp(scanner);
+        //scanner.close();
+        commandDefendant.getCommandByCode("info").execute();
     }
 }

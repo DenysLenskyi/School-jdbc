@@ -13,9 +13,9 @@ public class PopulateTablesCommand implements Command {
 
     @Override
     public void execute() {
-        tables.populateTableCourse(SCRIPT_POPULATE_COURSE_TABLE)
-                .populateTableGroup(SCRIPT_POPULATE_GROUP_TABLE)
-                .populateTableStudent(SCRIPT_POPULATE_STUDENT_TABLE)
-                .populateTableStudentCourse(SCRIPT_POPULATE_STUDENT_COURSE_TABLE);
+        tables.populateTableCourse(SCRIPT_POPULATE_COURSE_TABLE);
+        tables.populateTableGroup(SCRIPT_POPULATE_GROUP_TABLE);
+        tables.populateTableStudent(SCRIPT_POPULATE_STUDENT_TABLE);
+        tables.populateTableStudentCourse(SCRIPT_POPULATE_STUDENT_COURSE_TABLE);
     }
 }
