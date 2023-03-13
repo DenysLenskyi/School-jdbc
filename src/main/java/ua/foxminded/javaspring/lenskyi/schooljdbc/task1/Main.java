@@ -22,5 +22,9 @@ public class Main {
         CommandDefendant commandDefendant = new CommandDefendant();
         CommandHolder commandHolder = CommandHolderBuilder.buildCommandFromInputString("info");
         commandDefendant.getCommandByCode(commandHolder.getCommandName()).execute(commandHolder);
+
+        CommandHolder commandHolder1 = CommandHolderBuilder
+                .buildCommandFromInputString("find_course --course_id=7");
+        commandDefendant.getCommandByCode(commandHolder1.getCommandName()).execute(commandHolder1);
     }
 }
