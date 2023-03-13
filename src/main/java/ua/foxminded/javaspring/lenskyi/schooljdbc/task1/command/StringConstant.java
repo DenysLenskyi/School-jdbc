@@ -20,4 +20,5 @@ public class StringConstant {
     public static final String NULL = "NULL";
     public static final String SON = "son";
     public static final String UNDERSCORE = "_";
+    public static final String EQUAL = "=";
 }

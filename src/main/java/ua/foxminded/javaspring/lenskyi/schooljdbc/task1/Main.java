@@ -1,6 +1,8 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandDefendant;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandHolder;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandHolderBuilder;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils.UserInteraction;
 
 import java.util.Scanner;
@@ -11,10 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         CommandDefendant commandDefendant = new CommandDefendant();
-        commandDefendant.findCommand("100").execute();
-        commandDefendant.findCommand("110").execute();
-        //UserInteraction.runApp(scanner);
-        //scanner.close();
-        commandDefendant.getCommandByCode("info").execute();
+        CommandHolder commandHolder = CommandHolderBuilder.buildCommandFromInputString("info");
+        commandDefendant.getCommandByCode(commandHolder.getCommandName()).execute(commandHolder);
     }
 }

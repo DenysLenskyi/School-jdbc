@@ -1,5 +1,8 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.commands;
 
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.Command;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandHolder;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.QueryBuilder;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.TablePopulateDao;
 
 public class PopulateTablesCommand implements Command {
@@ -12,7 +15,7 @@ public class PopulateTablesCommand implements Command {
     public static final String SCRIPT_POPULATE_STUDENT_COURSE_TABLE = queryBuilder.getPopulateStudentCourseTableQuery();
 
     @Override
-    public void execute() {
+    public void execute(CommandHolder ch) {
         tables.populateTableCourse(SCRIPT_POPULATE_COURSE_TABLE);
         tables.populateTableGroup(SCRIPT_POPULATE_GROUP_TABLE);
         tables.populateTableStudent(SCRIPT_POPULATE_STUDENT_TABLE);

@@ -14,9 +14,12 @@ public class UserInteraction {
     public static final String DISCLAIMER = "info - prints available commands";
 
     public static void runApp(Scanner scanner) {
+        /*
         System.out.println(DISCLAIMER);
         String input = scanner.nextLine();
         commandDefendant.findCommand(input).execute();
         runApp(scanner);
+
+         */
     }
 }
