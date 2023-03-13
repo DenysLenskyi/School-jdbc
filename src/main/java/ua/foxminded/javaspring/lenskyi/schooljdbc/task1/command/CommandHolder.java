@@ -8,4 +8,8 @@ public class CommandHolder {
     public String getCommandName() {
         return commandName;
     }
+
+    public int getCourseId() {
+        return courseId;
+    }
 }
