@@ -1,6 +1,8 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandDefendant;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandHolder;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandHolderBuilder;
 
 import java.util.Scanner;
 
@@ -10,16 +12,12 @@ public class UserInteraction {
     }
 
     static CommandDefendant commandDefendant = new CommandDefendant();
-
-    public static final String DISCLAIMER = "info - prints available commands";
+    static CommandHolder commandHolder;
 
     public static void runApp(Scanner scanner) {
-        /*
-        System.out.println(DISCLAIMER);
         String input = scanner.nextLine();
-        commandDefendant.findCommand(input).execute();
+        commandHolder = CommandHolderBuilder.buildCommandFromInputString(input);
+        commandDefendant.getCommandByCode(commandHolder.getCommandName()).execute(commandHolder);
         runApp(scanner);
-
-         */
     }
 }
