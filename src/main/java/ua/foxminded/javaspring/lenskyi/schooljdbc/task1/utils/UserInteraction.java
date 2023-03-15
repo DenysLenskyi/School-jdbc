@@ -12,14 +12,18 @@ public class UserInteraction {
     }
 
     private static final String INITIAL_INPUT = "initial input";
+    public static final String EXIT = "exit";
 
     static CommandDefendant commandDefendant = new CommandDefendant();
     static CommandHolder commandHolder;
 
     public static void runApp(Scanner scanner) {
         String input = INITIAL_INPUT;
-        while (!(input.equals(CommandDefendant.EXIT))) {
+        while (!(input.equals(EXIT))) {
             input = scanner.nextLine();
+            if (input.equals(EXIT)) {
+                break;
+            }
             commandHolder = CommandHolderBuilder.buildCommandFromInputString(input);
             commandDefendant.getCommandByCode(commandHolder.getCommandName()).execute(commandHolder);
         }

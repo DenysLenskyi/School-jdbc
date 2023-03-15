@@ -9,12 +9,10 @@ public class CommandDefendant {
     Command unknown = new UnknownCommand();
     static Map<String, Command> commandCode = new HashMap<>();
     public static final String INFO = "info";
-    public static final String EXIT = "exit";
     public static final String FIND_COURSE_BY_ID = "find_course";
 
     static {
         commandCode.put(INFO, new InfoCommand());
-        commandCode.put(EXIT, new ExitCommand());
         commandCode.put(FIND_COURSE_BY_ID, new FindCourseByIdCommand());
     }
 
