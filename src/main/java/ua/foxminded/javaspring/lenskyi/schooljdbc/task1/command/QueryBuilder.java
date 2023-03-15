@@ -30,6 +30,15 @@ public class QueryBuilder {
 
     private static final String SQL_FIND_COURSE_BY_ID = "SELECT ID, NAME, DESCRIPTION FROM public.course WHERE ID = ";
 
+    private static final String SQL_GROUPS_WITH_LESS_OR_EQUAL_NUM_STUDENTS = """
+            select group_id, public.group.name group_name, count(student.id)
+                from public.student
+                inner join public.group on group_id = public.group.id
+                group by name, group_id
+                having count(student.id) <= 
+                """;
+    private static final String ORDER_BY_GROUP_ID = " order by group_id;";
+
 
     public String getInitiateTablesQuery() {
         return reader.readFile(TABLES_INITIATION_SCRIPT_FILE_NAME);
@@ -160,6 +169,14 @@ public class QueryBuilder {
         return script.append(SQL_FIND_COURSE_BY_ID)
                 .append(courseId)
                 .append(StringConstant.SEMICOLON)
+                .toString();
+    }
+
+    public String getFindGroupsWithNumStudentsScript(int numStudents) {
+        StringBuilder script = new StringBuilder();
+        return script.append(SQL_GROUPS_WITH_LESS_OR_EQUAL_NUM_STUDENTS)
+                .append(numStudents)
+                .append(ORDER_BY_GROUP_ID)
                 .toString();
     }
 }
