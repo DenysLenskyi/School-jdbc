@@ -11,13 +11,18 @@ public class UserInteraction {
     private UserInteraction() {
     }
 
+    private static final String INITIAL_INPUT = "initial input";
+
     static CommandDefendant commandDefendant = new CommandDefendant();
     static CommandHolder commandHolder;
 
     public static void runApp(Scanner scanner) {
-        String input = scanner.nextLine();
-        commandHolder = CommandHolderBuilder.buildCommandFromInputString(input);
-        commandDefendant.getCommandByCode(commandHolder.getCommandName()).execute(commandHolder);
-        runApp(scanner);
+        String input = INITIAL_INPUT;
+        while (!(input.equals(CommandDefendant.EXIT))) {
+            input = scanner.nextLine();
+            commandHolder = CommandHolderBuilder.buildCommandFromInputString(input);
+            commandDefendant.getCommandByCode(commandHolder.getCommandName()).execute(commandHolder);
+        }
+        scanner.close();
     }
 }

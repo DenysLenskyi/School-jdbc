@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandDefendant {
-
+    Command unknown = new UnknownCommand();
     static Map<String, Command> commandCode = new HashMap<>();
     public static final String INFO = "info";
     public static final String EXIT = "exit";
@@ -19,6 +19,10 @@ public class CommandDefendant {
     }
 
     public Command getCommandByCode(String code) {
-        return commandCode.get(code);
+        if (commandCode.containsKey(code)) {
+            return commandCode.get(code);
+        } else {
+            return unknown;
+        }
     }
 }
