@@ -24,6 +24,7 @@ public class CommandDefendant {
         commandCode.put(UNKNOWN, unknown);
         commandCode.put(FIND_COURSE_BY_ID, new FindCourseByIdCommand());
         commandCode.put(FIND_GROUPS, new FindGroupsWithNumStudentsCommand());
+        commandCode.put(FIND_STUDENTS_COURSE, new FindStudentsEnrolledToCourseCommand());
     }
 
     public Command getCommandByCode(String code) {

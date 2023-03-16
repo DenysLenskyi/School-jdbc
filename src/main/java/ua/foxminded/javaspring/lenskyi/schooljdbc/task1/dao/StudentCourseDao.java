@@ -1,20 +1,14 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.StringConstant;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Student;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentCourseDao {
 
-    public static final String STUDENT_ID = "Student ID: ";
-    public static final String STUDENT_FULL_NAME = "Student name: ";
-    private static final String SQL_FIND_STUDENTS_ENROLLED_TO_COURSE = """
-            select distinct s.id, first_name, last_name
-                from public.student_course s_c
-                inner join public.course c on course_id = c.id
-                inner join public.student s on s_c.student_id = s.id
-                where c.name = 
-            """;
     private static final String SQL_ADD_STUDENT_TO_COURSE_FIRST_PART = """
             insert into public.student_course (student_id, course_id)
             select 
@@ -34,35 +28,22 @@ public class StudentCourseDao {
             """;
 
 
-    public String getStudentsEnrolledToCourse(String courseName) {
-        StringBuilder output = new StringBuilder();
-        StringBuilder script = new StringBuilder();
-        script.append(SQL_FIND_STUDENTS_ENROLLED_TO_COURSE)
-                .append(StringConstant.QUOTE)
-                .append(courseName)
-                .append(StringConstant.QUOTE)
-                .append(StringConstant.SEMICOLON);
-        output.append("Students enrolled to ")
-                .append(courseName)
-                .append(" course")
-                .append(StringConstant.NEWLINE);
+    public List<Student> getStudentsEnrolledToCourse(String script) {
+        List<Student> output = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(script.toString());
+             PreparedStatement preparedStatement = connection.prepareStatement(script);
              ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {
-                output.append(STUDENT_ID)
-                        .append(rs.getInt(1))
-                        .append(StringConstant.VERTICAL_BAR)
-                        .append(STUDENT_FULL_NAME)
-                        .append(rs.getString(2))
-                        .append(StringConstant.WHITESPACE)
-                        .append(rs.getString(3))
-                        .append(StringConstant.NEWLINE);
+                Student student = new Student();
+                student.studentId = rs.getInt(1);
+                student.studentFirstName = rs.getString(2);
+                student.studentLastName = rs.getString(3);
+                output.add(student);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return output.toString();
+        return output;
     }
 
     public void addStudentToCourse(int studentId, String courseName) {

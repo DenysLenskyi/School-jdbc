@@ -20,14 +20,14 @@ public class FindGroupsWithNumStudentsCommand implements Command {
     GroupDao groupTable = new GroupDao();
 
     @Override
-    public void execute(CommandHolder ch) {
+    public void execute(CommandHolder commandHolder) {
         StringBuilder output = new StringBuilder();
         output.append(DISCLAIMER)
-                .append(ch.getNumStudents())
+                .append(commandHolder.getNumStudents())
                 .append(STUDENTS)
                 .append(StringConstant.NEWLINE);
         List<Group> queryResult = groupTable.getGroupWithLessOrEqualAmountOfStudents(
-                queryBuilder.getFindGroupsWithNumStudentsScript(ch.getNumStudents()));
+                queryBuilder.getFindGroupsWithNumStudentsScript(commandHolder.getNumStudents()));
         for (Group group : queryResult) {
             output.append(GROUP_ID)
                     .append(group.groupId)

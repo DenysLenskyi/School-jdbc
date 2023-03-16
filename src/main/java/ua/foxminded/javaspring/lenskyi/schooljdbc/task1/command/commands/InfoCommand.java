@@ -18,7 +18,7 @@ public class InfoCommand implements Command {
             """;
 
     @Override
-    public void execute(CommandHolder ch) {
+    public void execute(CommandHolder commandHolder) {
         System.out.println(INFO);
     }
 }

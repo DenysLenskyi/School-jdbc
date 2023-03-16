@@ -38,6 +38,13 @@ public class QueryBuilder {
                 having count(student.id) <= 
                 """;
     private static final String ORDER_BY_GROUP_ID = " order by group_id;";
+    private static final String SQL_FIND_STUDENTS_ENROLLED_TO_COURSE = """
+            select distinct s.id, first_name, last_name
+                from public.student_course s_c
+                inner join public.course c on course_id = c.id
+                inner join public.student s on s_c.student_id = s.id
+                where c.name = 
+            """;
 
 
     public String getInitiateTablesQuery() {
@@ -189,6 +196,16 @@ public class QueryBuilder {
         return script.append(SQL_GROUPS_WITH_LESS_OR_EQUAL_NUM_STUDENTS)
                 .append(numStudents)
                 .append(ORDER_BY_GROUP_ID)
+                .toString();
+    }
+
+    public String getFindStudentsEnrolledToCourseScript(String courseName) {
+        StringBuilder script = new StringBuilder();
+        return script.append(SQL_FIND_STUDENTS_ENROLLED_TO_COURSE)
+                .append(StringConstant.QUOTE)
+                .append(courseName)
+                .append(StringConstant.QUOTE)
+                .append(StringConstant.SEMICOLON)
                 .toString();
     }
 }
