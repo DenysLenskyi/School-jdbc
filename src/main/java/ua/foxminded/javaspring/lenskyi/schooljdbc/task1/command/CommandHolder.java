@@ -22,4 +22,24 @@ public class CommandHolder {
     public int getNumStudents() {
         return numStudents;
     }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public String getStudentFirstName() {
+        return studentFirstName;
+    }
+
+    public String getStudentLastName() {
+        return studentLastName;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
 }
