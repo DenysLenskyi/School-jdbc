@@ -44,6 +44,18 @@ public class QueryBuilder {
         return reader.readFile(TABLES_INITIATION_SCRIPT_FILE_NAME);
     }
 
+    public String getPopulateTablesQuery() {
+        StringBuilder script = new StringBuilder();
+        return script.append(getPopulateCourseTableQuery())
+                .append(StringConstant.NEWLINE)
+                .append(getPopulateGroupTableQuery())
+                .append(StringConstant.NEWLINE)
+                .append(getPopulateStudentTableQuery())
+                .append(StringConstant.NEWLINE)
+                .append(getPopulateStudentCourseTableQuery())
+                .toString();
+    }
+
     public String getPopulateCourseTableQuery() {
         return reader.readFile(COURSE_TABLE_POPULATION_SCRIPT_FILE_NAME);
     }

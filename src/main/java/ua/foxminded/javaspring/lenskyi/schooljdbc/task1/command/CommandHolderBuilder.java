@@ -9,6 +9,7 @@ public class CommandHolderBuilder extends CommandHolder {
     private static final String FIRST_NAME = "--first_name";
     private static final String LAST_NAME = "--last_name";
     private static final String STUDENT_ID = "--student_id";
+    private static final String INVALID_INPUT = "invalid input";
 
     public static CommandHolder buildCommandFromInputString(String commandText) {
         CommandHolder commandHolder = new CommandHolder();
@@ -37,6 +38,9 @@ public class CommandHolderBuilder extends CommandHolder {
                 } else if (commandKeyword.contains(LAST_NAME)) {
                     String[] keywordValue = commandKeyword.split(StringConstant.EQUAL);
                     commandHolder.studentLastName = keywordValue[1];
+                } else {
+                    System.out.println(INVALID_INPUT);
+                    commandHolder.commandName = CommandDefendant.UNKNOWN;
                 }
             }
         }
