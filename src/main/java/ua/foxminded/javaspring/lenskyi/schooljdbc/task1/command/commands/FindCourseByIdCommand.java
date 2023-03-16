@@ -5,6 +5,7 @@ import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandHolder;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.QueryBuilder;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.StringConstant;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.CourseDao;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Course;
 
 import java.util.List;
 
@@ -20,17 +21,16 @@ public class FindCourseByIdCommand implements Command {
 
     @Override
     public void execute(CommandHolder commandHolder) {
-        final String SQL = queryBuilder.getFindCourseByIdScript(commandHolder.getCourseId());
-        List<String> queryOutput = courseTable.findCourseById(SQL);
         StringBuilder output = new StringBuilder();
-        output.append(COURSE_ID)
-                .append(queryOutput.get(0))
+        Course course = courseTable.findCourseById(queryBuilder.getFindCourseByIdScript(commandHolder.getCourseId()));
+        System.out.println(output.append(COURSE_ID)
+                .append(course.courseId)
                 .append(StringConstant.VERTICAL_BAR)
                 .append(COURSE_NAME)
-                .append(queryOutput.get(1))
+                .append(course.courseName)
                 .append(StringConstant.VERTICAL_BAR)
                 .append(COURSE_DESCRIPTION)
-                .append(queryOutput.get(2));
-        System.out.println(output);
+                .append(course.courseDescription)
+                .append(StringConstant.NEWLINE));
     }
 }

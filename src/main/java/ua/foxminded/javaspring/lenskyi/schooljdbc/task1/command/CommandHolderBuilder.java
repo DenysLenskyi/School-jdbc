@@ -38,9 +38,6 @@ public class CommandHolderBuilder extends CommandHolder {
                 } else if (commandKeyword.contains(LAST_NAME)) {
                     String[] keywordValue = commandKeyword.split(StringConstant.EQUAL);
                     commandHolder.studentLastName = keywordValue[1];
-                } else {
-                    System.out.println(INVALID_INPUT);
-                    commandHolder.commandName = CommandDefendant.UNKNOWN;
                 }
             }
         }

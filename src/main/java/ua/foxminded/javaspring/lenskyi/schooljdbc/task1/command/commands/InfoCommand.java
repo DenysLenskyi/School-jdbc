@@ -10,7 +10,7 @@ public class InfoCommand implements Command {
             exit - exits the app
             find_course --course_id= - prints course's info by course id number (1-10)
             find_groups --num_students= - prints groups with less or equal student's number (max 30)
-            find_students --course_name= - example: --course_name=History - prints students enrolled to course
+            find_students_course --course_name= - example: --course_name=History - prints students enrolled to course
             add_student --group_id= --first_name= --last_name= - group id should be 0-10
             delete_student --student_id= - deletes student by student id
             add_student_course --student id= --course_name= - adds student to course
