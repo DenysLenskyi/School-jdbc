@@ -13,8 +13,8 @@ public class InfoCommand implements Command {
             find_students_course --course_name= - example: --course_name=History - prints students enrolled to course
             add_student --group_id= --first_name= --last_name= - group id should be 0-10
             delete_student --student_id= - deletes student by student id
-            add_student_course --student id= --course_name= - adds student to course
-            delete_student_course --student id= --course_name= - deletes student from course
+            add_student_course --student_id= --course_name= - adds student to course
+            delete_student_course --student_id= --course_name= - deletes student from course
             """;
 
     @Override

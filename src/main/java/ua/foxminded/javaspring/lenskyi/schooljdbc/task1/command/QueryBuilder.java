@@ -48,6 +48,23 @@ public class QueryBuilder {
             """;
     private static final String SQL_ADD_NEW_STUDENT = "insert into public.student values (default, ";
     private static final String SQL_DELETE_STUDENT_BY_ID = "delete from public.student where id = ";
+    private static final String SQL_ADD_STUDENT_TO_COURSE_FIRST_PART = """
+            insert into public.student_course (student_id, course_id)
+            select 
+            """;
+    private static final String SQL_ADD_STUDENT_TO_COURSE_SECOND_PART = """
+            , c.id
+            from public.course c
+            where c.name = 
+            """;
+    private static final String SQL_REMOVE_STUDENT_FROM_COURSE_FIRST_PART = """
+            delete from public.student_course
+            where student_id = 
+            """;
+    private static final String SQL_REMOVE_STUDENT_FROM_COURSE_SECOND_PART = """
+             and course_id in (select
+            id from public.course where name = 
+            """;
 
 
     public String getInitiateTablesQuery() {
@@ -239,6 +256,31 @@ public class QueryBuilder {
         StringBuilder script = new StringBuilder();
         return script.append(SQL_DELETE_STUDENT_BY_ID)
                 .append(studentId)
+                .append(StringConstant.SEMICOLON)
+                .toString();
+    }
+
+    public String getAddStudentToCourseScript(int studentId, String courseName) {
+        StringBuilder script = new StringBuilder();
+        return script.append(SQL_ADD_STUDENT_TO_COURSE_FIRST_PART)
+                .append(studentId)
+                .append(SQL_ADD_STUDENT_TO_COURSE_SECOND_PART)
+                .append(StringConstant.QUOTE)
+                .append(courseName)
+                .append(StringConstant.QUOTE)
+                .append(StringConstant.SEMICOLON)
+                .toString();
+    }
+
+    public String getDeleteStudentFromCourseScript(int studentId, String courseName) {
+        StringBuilder script = new StringBuilder();
+        return script.append(SQL_REMOVE_STUDENT_FROM_COURSE_FIRST_PART)
+                .append(studentId)
+                .append(SQL_REMOVE_STUDENT_FROM_COURSE_SECOND_PART)
+                .append(StringConstant.QUOTE)
+                .append(courseName)
+                .append(StringConstant.QUOTE)
+                .append(StringConstant.CLOSE_BRACKET)
                 .append(StringConstant.SEMICOLON)
                 .toString();
     }

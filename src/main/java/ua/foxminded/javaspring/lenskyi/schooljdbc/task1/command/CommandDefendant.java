@@ -27,6 +27,8 @@ public class CommandDefendant {
         commandCode.put(FIND_STUDENTS_COURSE, new FindStudentsEnrolledToCourseCommand());
         commandCode.put(ADD_STUDENT, new AddNewStudentCommand());
         commandCode.put(DELETE_STUDENT, new DeleteStudentByIdCommand());
+        commandCode.put(ADD_STUDENT_COURSE, new AddStudentToCourseCommand());
+        commandCode.put(DELETE_STUDENT_COURSE, new DeleteStudentFromCourseCommand());
     }
 
     public Command getCommandByCode(String code) {
