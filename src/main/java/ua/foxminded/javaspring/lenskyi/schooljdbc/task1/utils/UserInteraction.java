@@ -11,20 +11,19 @@ public class UserInteraction {
     private UserInteraction() {
     }
 
-    private static final String INITIAL_INPUT = "initial input";
     public static final String EXIT = "exit";
 
     static CommandDefendant commandDefendant = new CommandDefendant();
     static CommandHolder commandHolder;
 
     public static void runApp(Scanner scanner) {
-        String input = INITIAL_INPUT;
-        while (!(input.equals(EXIT))) {
-            input = scanner.nextLine();
-            if (input.equals(EXIT)) {
+        String userInput;
+        while (true) {
+            userInput = scanner.nextLine();
+            if (EXIT.equals(userInput)) {
                 break;
             }
-            commandHolder = CommandHolderBuilder.buildCommandFromInputString(input);
+            commandHolder = CommandHolderBuilder.buildCommandFromInputString(userInput);
             commandDefendant.getCommandByCode(commandHolder.getCommandName()).execute(commandHolder);
         }
         scanner.close();
