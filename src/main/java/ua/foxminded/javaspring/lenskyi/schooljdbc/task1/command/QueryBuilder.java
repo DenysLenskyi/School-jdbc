@@ -1,6 +1,7 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils.FileReader;
+
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -45,6 +46,8 @@ public class QueryBuilder {
                 inner join public.student s on s_c.student_id = s.id
                 where c.name = 
             """;
+    private static final String SQL_ADD_NEW_STUDENT = "insert into public.student values (default, ";
+    private static final String SQL_DELETE_STUDENT_BY_ID = "delete from public.student where id = ";
 
 
     public String getInitiateTablesQuery() {
@@ -205,6 +208,37 @@ public class QueryBuilder {
                 .append(StringConstant.QUOTE)
                 .append(courseName)
                 .append(StringConstant.QUOTE)
+                .append(StringConstant.SEMICOLON)
+                .toString();
+    }
+
+    public String getAddNewStudentScript(int groupId, String firstName, String lastName) {
+        StringBuilder script = new StringBuilder();
+        script.append(SQL_ADD_NEW_STUDENT);
+        if (groupId == 0) {
+            script.append(StringConstant.NULL);
+        } else {
+            script.append(groupId);
+        }
+        return script.append(StringConstant.COMA)
+                .append(StringConstant.WHITESPACE)
+                .append(StringConstant.QUOTE)
+                .append(firstName)
+                .append(StringConstant.QUOTE)
+                .append(StringConstant.COMA)
+                .append(StringConstant.WHITESPACE)
+                .append(StringConstant.QUOTE)
+                .append(lastName)
+                .append(StringConstant.QUOTE)
+                .append(StringConstant.CLOSE_BRACKET)
+                .append(StringConstant.SEMICOLON)
+                .toString();
+    }
+
+    public String getDeleteStudentByIdScript(int studentId) {
+        StringBuilder script = new StringBuilder();
+        return script.append(SQL_DELETE_STUDENT_BY_ID)
+                .append(studentId)
                 .append(StringConstant.SEMICOLON)
                 .toString();
     }

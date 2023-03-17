@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandDefendant {
-    static Command unknown = new UnknownCommand();
+    static Command unknownCommand = new UnknownCommand();
     static Map<String, Command> commandCode = new HashMap<>();
     public static final String INFO = "info";
     public static final String UNKNOWN = "unknown";
@@ -21,17 +21,19 @@ public class CommandDefendant {
 
     static {
         commandCode.put(INFO, new InfoCommand());
-        commandCode.put(UNKNOWN, unknown);
+        commandCode.put(UNKNOWN, unknownCommand);
         commandCode.put(FIND_COURSE_BY_ID, new FindCourseByIdCommand());
         commandCode.put(FIND_GROUPS, new FindGroupsWithNumStudentsCommand());
         commandCode.put(FIND_STUDENTS_COURSE, new FindStudentsEnrolledToCourseCommand());
+        commandCode.put(ADD_STUDENT, new AddNewStudentCommand());
+        commandCode.put(DELETE_STUDENT, new DeleteStudentByIdCommand());
     }
 
     public Command getCommandByCode(String code) {
         if (commandCode.containsKey(code)) {
             return commandCode.get(code);
         } else {
-            return unknown;
+            return unknownCommand;
         }
     }
 }
