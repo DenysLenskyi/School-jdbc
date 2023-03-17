@@ -15,7 +15,6 @@ public class FindGroupsWithNumStudentsCommand implements Command {
     private static final String STUDENTS = " students";
     private static final String GROUP_ID = "Group ID: ";
     private static final String GROUP_NAME = "Group name: ";
-    private static final String NUM_STUDENTS = "Students in group: ";
     static QueryBuilder queryBuilder = new QueryBuilder();
     GroupDao groupTable = new GroupDao();
 
@@ -30,13 +29,10 @@ public class FindGroupsWithNumStudentsCommand implements Command {
                 queryBuilder.getFindGroupsWithNumStudentsScript(commandHolder.getNumStudents()));
         for (Group group : queryResult) {
             output.append(GROUP_ID)
-                    .append(group.groupId)
+                    .append(group.getGroupId())
                     .append(StringConstant.VERTICAL_BAR)
                     .append(GROUP_NAME)
-                    .append(group.groupName)
-                    .append(StringConstant.VERTICAL_BAR)
-                    .append(NUM_STUDENTS)
-                    .append(group.numStudents)
+                    .append(group.getGroupName())
                     .append(StringConstant.NEWLINE);
         }
         System.out.println(output);

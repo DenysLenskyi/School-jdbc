@@ -23,47 +23,47 @@ public class QueryBuilder {
     private static final String TABLES_INITIATION_SCRIPT_FILE_NAME = "/initiate-tables.sql";
     private static final String COURSE_TABLE_POPULATION_SCRIPT_FILE_NAME = "/populate-table-course.sql";
     private static final String SQL_INSERT_INTO_GROUP_TABLE =
-            "TRUNCATE TABLE public.group CASCADE; INSERT INTO public.group (id, name)";
+            "INSERT INTO school.group (id, name)";
     private static final String SQL_INSERT_INTO_STUDENT_COURSE_TABLE =
-            "TRUNCATE TABLE student_course CASCADE; INSERT INTO student_course (STUDENT_ID, COURSE_ID)";
+            "INSERT INTO school.student_course (STUDENT_ID, COURSE_ID)";
     private static final String SQL_INSERT_INTO_STUDENT_TABLE =
-            "TRUNCATE TABLE student CASCADE; INSERT INTO student (id, group_id, first_name, last_name)";
+            "INSERT INTO school.student (id, group_id, first_name, last_name)";
 
-    private static final String SQL_FIND_COURSE_BY_ID = "SELECT ID, NAME, DESCRIPTION FROM public.course WHERE ID = ";
+    private static final String SQL_FIND_COURSE_BY_ID = "SELECT ID, NAME, DESCRIPTION FROM school.course WHERE ID = ";
 
     private static final String SQL_GROUPS_WITH_LESS_OR_EQUAL_NUM_STUDENTS = """
-            select group_id, public.group.name group_name, count(student.id)
-                from public.student
-                inner join public.group on group_id = public.group.id
+            select group_id, school.group.name group_name, count(student.id)
+                from school.student
+                inner join school.group on group_id = school.group.id
                 group by name, group_id
                 having count(student.id) <= 
                 """;
     private static final String ORDER_BY_GROUP_ID = " order by group_id;";
     private static final String SQL_FIND_STUDENTS_ENROLLED_TO_COURSE = """
             select distinct s.id, first_name, last_name
-                from public.student_course s_c
-                inner join public.course c on course_id = c.id
-                inner join public.student s on s_c.student_id = s.id
+                from school.student_course s_c
+                inner join school.course c on course_id = c.id
+                inner join school.student s on s_c.student_id = s.id
                 where c.name = 
             """;
-    private static final String SQL_ADD_NEW_STUDENT = "insert into public.student values (default, ";
-    private static final String SQL_DELETE_STUDENT_BY_ID = "delete from public.student where id = ";
+    private static final String SQL_ADD_NEW_STUDENT = "insert into school.student values (default, ";
+    private static final String SQL_DELETE_STUDENT_BY_ID = "delete from school.student where id = ";
     private static final String SQL_ADD_STUDENT_TO_COURSE_FIRST_PART = """
-            insert into public.student_course (student_id, course_id)
+            insert into school.student_course (student_id, course_id)
             select 
             """;
     private static final String SQL_ADD_STUDENT_TO_COURSE_SECOND_PART = """
             , c.id
-            from public.course c
+            from school.course c
             where c.name = 
             """;
     private static final String SQL_REMOVE_STUDENT_FROM_COURSE_FIRST_PART = """
-            delete from public.student_course
+            delete from school.student_course
             where student_id = 
             """;
     private static final String SQL_REMOVE_STUDENT_FROM_COURSE_SECOND_PART = """
              and course_id in (select
-            id from public.course where name = 
+            id from school.course where name = 
             """;
 
 

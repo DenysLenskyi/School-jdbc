@@ -14,12 +14,24 @@ public class Main {
     public static final String DISCLAIMER = "info - prints available commands";
 
     public static void main(String[] args) {
-        Command createNewTables = new CreateTablesCommand();
-        createNewTables.execute(new CommandHolder());
-        Command populateTables = new PopulateTablesCommand();
-        populateTables.execute(new CommandHolder());
-        System.out.println(DISCLAIMER);
+        initiateDatabase();
+        populateDatabase();
+        printDisclaimer();
         UserInteraction.runApp(scanner);
         scanner.close();
+    }
+
+    private static void initiateDatabase() {
+        Command createNewTables = new CreateTablesCommand();
+        createNewTables.execute(new CommandHolder());
+    }
+
+    private static void populateDatabase() {
+        Command populateTables = new PopulateTablesCommand();
+        populateTables.execute(new CommandHolder());
+    }
+
+    private static void printDisclaimer() {
+        System.out.println(DISCLAIMER);
     }
 }

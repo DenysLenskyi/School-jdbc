@@ -18,9 +18,8 @@ public class GroupDao {
              ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {
                 Group group = new Group();
-                group.groupId = rs.getInt(1);
-                group.groupName = rs.getString(2);
-                group.numStudents = rs.getInt(3);
+                group.setGroupId(rs.getInt(1));
+                group.setGroupName(rs.getString(2));
                 output.add(group);
             }
         } catch (SQLException e) {

@@ -1,5 +1,4 @@
-TRUNCATE TABLE course CASCADE;
-INSERT INTO course (id, name, description)
+INSERT INTO school.course (id, name, description)
 VALUES
 (default, 'Math', 'Learn basic math operations'),
 (default, 'English', 'How to write and speak, spell'),
