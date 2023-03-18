@@ -29,10 +29,10 @@ public class FindGroupsWithNumStudentsCommand implements Command {
                 queryBuilder.getFindGroupsWithNumStudentsScript(commandHolder.getNumStudents()));
         for (Group group : queryResult) {
             output.append(GROUP_ID)
-                    .append(group.getGroupId())
+                    .append(group.getId())
                     .append(StringConstant.VERTICAL_BAR)
                     .append(GROUP_NAME)
-                    .append(group.getGroupName())
+                    .append(group.getName())
                     .append(StringConstant.NEWLINE);
         }
         System.out.println(output);

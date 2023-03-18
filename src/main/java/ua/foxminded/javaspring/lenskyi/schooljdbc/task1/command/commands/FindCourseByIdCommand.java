@@ -7,8 +7,6 @@ import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.StringConstant;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.CourseDao;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Course;
 
-import java.util.List;
-
 public class FindCourseByIdCommand implements Command {
 
     private static final String COURSE_ID = "Course ID: ";
@@ -24,13 +22,13 @@ public class FindCourseByIdCommand implements Command {
         StringBuilder output = new StringBuilder();
         Course course = courseTable.findCourseById(queryBuilder.getFindCourseByIdScript(commandHolder.getCourseId()));
         System.out.println(output.append(COURSE_ID)
-                .append(course.courseId)
+                .append(course.getId())
                 .append(StringConstant.VERTICAL_BAR)
                 .append(COURSE_NAME)
-                .append(course.courseName)
+                .append(course.getName())
                 .append(StringConstant.VERTICAL_BAR)
                 .append(COURSE_DESCRIPTION)
-                .append(course.courseDescription)
+                .append(course.getDescription())
                 .append(StringConstant.NEWLINE));
     }
 }

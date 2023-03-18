@@ -26,8 +26,8 @@ public class RandomDataCreator {
         List<Group> groups = new ArrayList<>();
         for (int i = 1; i <= numGroups; i++) {
             Group group = new Group();
-            group.setGroupId(i);
-            group.setGroupName(generateGroupName());
+            group.setId(i);
+            group.setName(generateGroupName());
             groups.add(group);
         }
         return groups;

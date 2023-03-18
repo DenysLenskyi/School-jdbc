@@ -29,12 +29,12 @@ public class FindStudentsEnrolledToCourseCommand implements Command {
                 queryBuilder.getFindStudentsEnrolledToCourseScript(commandHolder.getCourseName()));
         for (Student student : queryResult) {
             output.append(STUDENT_ID)
-                    .append(student.studentId)
+                    .append(student.getId())
                     .append(StringConstant.VERTICAL_BAR)
                     .append(STUDENT_FULL_NAME)
-                    .append(student.studentFirstName)
+                    .append(student.getFirstName())
                     .append(StringConstant.WHITESPACE)
-                    .append(student.studentLastName)
+                    .append(student.getLastName())
                     .append(StringConstant.NEWLINE);
         }
         System.out.println(output);

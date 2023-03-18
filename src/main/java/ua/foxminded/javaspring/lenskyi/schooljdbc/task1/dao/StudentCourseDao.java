@@ -16,9 +16,9 @@ public class StudentCourseDao {
              ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {
                 Student student = new Student();
-                student.studentId = rs.getInt(1);
-                student.studentFirstName = rs.getString(2);
-                student.studentLastName = rs.getString(3);
+                student.setId(rs.getInt(1));
+                student.setFirstName(rs.getString(2));
+                student.setLastName(rs.getString(3));
                 output.add(student);
             }
         } catch (SQLException e) {

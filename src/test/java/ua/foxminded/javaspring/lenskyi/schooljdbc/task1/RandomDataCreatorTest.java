@@ -19,14 +19,14 @@ public class RandomDataCreatorTest {
     @Test
     public void generateGroupsIdsTest() {
         List<Group> groups = RandomDataCreator.generateGroups(10);
-        assertEquals(1, groups.get(0).getGroupId());
-        assertEquals(2, groups.get(1).getGroupId());
-        assertEquals(3, groups.get(2).getGroupId());
+        assertEquals(1, groups.get(0).getId());
+        assertEquals(2, groups.get(1).getId());
+        assertEquals(3, groups.get(2).getId());
     }
 
     @Test
     public void generateGroupsNamesLengthTest() {
         List<Group> groups = RandomDataCreator.generateGroups(10);
-        assertEquals(5, groups.get(0).getGroupName().length());
+        assertEquals(5, groups.get(0).getName().length());
     }
 }

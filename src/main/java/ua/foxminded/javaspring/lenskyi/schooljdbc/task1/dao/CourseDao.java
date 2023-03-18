@@ -12,9 +12,9 @@ public class CourseDao {
              PreparedStatement preparedStatement = connection.prepareStatement(sql);
              ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {
-                course.courseId = rs.getInt(1);
-                course.courseName = rs.getString(2);
-                course.courseDescription = rs.getString(3);
+                course.setId(rs.getInt(1));
+                course.setName(rs.getString(2));
+                course.setDescription(rs.getString(3));
             }
         } catch (SQLException e) {
             e.printStackTrace();

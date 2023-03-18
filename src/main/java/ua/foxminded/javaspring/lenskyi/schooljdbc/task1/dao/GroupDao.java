@@ -31,7 +31,7 @@ public class GroupDao {
                     .append(COMA)
                     .append(WHITESPACE)
                     .append(QUOTE)
-                    .append(group.getGroupName())
+                    .append(group.getName())
                     .append(QUOTE)
                     .append(CLOSE_BRACKET)
                     .append(COMA)
@@ -55,8 +55,8 @@ public class GroupDao {
              ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {
                 Group group = new Group();
-                group.setGroupId(rs.getInt(1));
-                group.setGroupName(rs.getString(2));
+                group.setId(rs.getInt(1));
+                group.setName(rs.getString(2));
                 output.add(group);
             }
         } catch (SQLException e) {

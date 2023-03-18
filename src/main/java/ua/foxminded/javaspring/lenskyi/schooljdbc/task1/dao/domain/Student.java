@@ -2,7 +2,31 @@ package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain;
 
 public class Student {
 
-    public int studentId;
-    public String studentFirstName;
-    public String studentLastName;
+    private int id;
+    private String firstName;
+    private String lastName;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }
