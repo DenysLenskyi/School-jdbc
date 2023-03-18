@@ -2,8 +2,10 @@ package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
 
 import org.junit.jupiter.api.Test;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Group;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Student;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils.RandomDataCreator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,5 +30,23 @@ public class RandomDataCreatorTest {
     public void generateGroupsNamesLengthTest() {
         List<Group> groups = RandomDataCreator.generateGroups(10);
         assertEquals(5, groups.get(0).getName().length());
+    }
+
+    @Test
+    public void generateStudentsListSizeTest() {
+        List<Student> students = RandomDataCreator.generateStudents(200);
+        assertEquals(200, students.size());
+    }
+
+    @Test
+    public void generateStudentsLastNameTest() {
+        List<Student> students = RandomDataCreator.generateStudents(200);
+        assertEquals(true, students.get(0).getLastName().contains("son"));
+    }
+
+    @Test
+    public void generateStudentsGroupIdTest() {
+        List<Student> students = RandomDataCreator.generateStudents(200);
+        assertEquals(true, (students.get(students.size() - 1).getGroupId()) != 0);
     }
 }

@@ -2,6 +2,7 @@ package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.StringConstant;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Group;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Student;
 
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
@@ -12,6 +13,9 @@ import java.util.Random;
 
 public class RandomDataCreator {
 
+    private RandomDataCreator() {
+    }
+
     private static Random rand;
 
     static {
@@ -21,6 +25,11 @@ public class RandomDataCreator {
             e.printStackTrace();
         }
     }
+
+    private static FileReader reader = new FileReader();
+
+    private static String[] names = reader.readFile(StringConstant.NAMES_TXT).split(StringConstant.SEMICOLON);
+    private static final String SON = "son";
 
     public static List<Group> generateGroups(int numGroups) {
         List<Group> groups = new ArrayList<>();
@@ -54,5 +63,46 @@ public class RandomDataCreator {
             }
         }
         return r.toString();
+    }
+
+    public static List<Student> generateStudents(int numStudents) {
+        List<Student> students = new ArrayList<>();
+        for (int i = 1; i <= numStudents; i++) {
+            Student student = new Student();
+            student.setId(i);
+            student.setGroupId(0);
+            student.setFirstName(generateStudentFirstName());
+            student.setLastName(generateStudentLastName());
+            students.add(student);
+        }
+        assignStudentsToGroups(students, 10);
+        return students;
+    }
+
+    private static void assignStudentsToGroups(List<Student> students, int numOfGroups) {
+        int numOfAssignedStudents = 0;
+        int numStudentsToAssign = students.size();
+        for (int i = 1; i <= numOfGroups; i++) {
+            int randomNumOfStudentsForOneGroup = rand.nextInt(10, 31);
+            numOfAssignedStudents += randomNumOfStudentsForOneGroup;
+            if (numOfAssignedStudents > students.size()) {
+                break;
+            } else {
+                while (randomNumOfStudentsForOneGroup > 0) {
+                    students.get((numStudentsToAssign) - 1).setGroupId(i);
+                    randomNumOfStudentsForOneGroup--;
+                    numStudentsToAssign--;
+                }
+            }
+        }
+    }
+
+    private static String generateStudentFirstName() {
+        return names[rand.nextInt( 40)];
+    }
+
+    private static String generateStudentLastName() {
+        StringBuilder studentLastName = new StringBuilder();
+        return studentLastName.append(names[rand.nextInt(40)]).append(SON).toString();
     }
 }

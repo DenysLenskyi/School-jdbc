@@ -75,8 +75,6 @@ public class QueryBuilder {
         StringBuilder script = new StringBuilder();
         return script.append(getPopulateCourseTableQuery())
                 .append(StringConstant.NEWLINE)
-                .append(getPopulateStudentTableQuery())
-                .append(StringConstant.NEWLINE)
                 .append(getPopulateStudentCourseTableQuery())
                 .toString();
     }
