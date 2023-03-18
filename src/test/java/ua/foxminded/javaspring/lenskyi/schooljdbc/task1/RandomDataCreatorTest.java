@@ -1,8 +1,10 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
 
 import org.junit.jupiter.api.Test;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Course;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Group;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Student;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.StudentCourse;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils.RandomDataCreator;
 
 import java.util.ArrayList;
@@ -48,5 +50,18 @@ public class RandomDataCreatorTest {
     public void generateStudentsGroupIdTest() {
         List<Student> students = RandomDataCreator.generateStudents(200);
         assertEquals(true, (students.get(students.size() - 1).getGroupId()) != 0);
+    }
+
+    @Test
+    public void generateStudentCourseRelation() {
+        List<StudentCourse> test = RandomDataCreator.generateStudentCourseRelation(10);
+        assertEquals(true, test.size() > 0);
+    }
+
+    @Test
+    public void getCoursesFromResourcesTest() {
+        List<Course> courses = RandomDataCreator.getCoursesFromResources();
+        assertEquals(10, courses.size());
+        assertEquals("Math", courses.get(0).getName());
     }
 }

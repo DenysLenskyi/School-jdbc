@@ -1,8 +1,10 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.StringConstant;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Course;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Group;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Student;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.StudentCourse;
 
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
@@ -104,5 +106,35 @@ public class RandomDataCreator {
     private static String generateStudentLastName() {
         StringBuilder studentLastName = new StringBuilder();
         return studentLastName.append(names[rand.nextInt(40)]).append(SON).toString();
+    }
+
+    public static List<StudentCourse> generateStudentCourseRelation(int numStudents) {
+        List<StudentCourse> studentsCourses = new ArrayList<>();
+        for (int i = 1; i <= numStudents; i++) {
+            StudentCourse studentCourse = new StudentCourse();
+            int numCourses = rand.nextInt(1, 4);
+            while (numCourses > 0) {
+                studentCourse.setStudentId(i);
+                studentCourse.setCourseId(rand.nextInt(1, 11));
+                studentsCourses.add(studentCourse);
+                numCourses--;
+            }
+        }
+        return studentsCourses;
+    }
+
+    public static List<Course> getCoursesFromResources() {
+        List<Course> courses = new ArrayList<>();
+        String[] coursesWithDescription = reader.readFile(StringConstant.COURSES).split(StringConstant.SEMICOLON);
+        int id = 0;
+        for (String courseWithDescription : coursesWithDescription) {
+            String[] str = courseWithDescription.split(StringConstant.WHITESPACE_HYPHEN_WHITESPACE);
+            Course course = new Course();
+            course.setId(id++);
+            course.setName(str[0]);
+            course.setDescription(str[1]);
+            courses.add(course);
+        }
+        return courses;
     }
 }
