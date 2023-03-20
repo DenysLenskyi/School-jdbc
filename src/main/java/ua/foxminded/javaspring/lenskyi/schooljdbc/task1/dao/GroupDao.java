@@ -8,41 +8,18 @@ import java.util.List;
 
 public class GroupDao {
 
-    private static final String SQL_INSERT_INTO_GROUP_TABLE = "INSERT INTO school.group (id, name)";
-    private static final String NEWLINE = "\n";
-    private static final String VALUES = "VALUES";
-    private static final String DEFAULT = "default";
-    private static final String OPEN_BRACKET = "(";
-    private static final String CLOSE_BRACKET = ")";
-    private static final String WHITESPACE = " ";
-    private static final String COMA = ",";
-    private static final String QUOTE = "'";
-    private static final String SEMICOLON = ";";
+    private static final String ADD_GROUPS_QUERY = "INSERT INTO school.group (name) VALUES (?)";
 
     public void addGroups(List<Group> groups) {
-        StringBuilder script = new StringBuilder();
-        script.append(SQL_INSERT_INTO_GROUP_TABLE)
-                .append(NEWLINE)
-                .append(VALUES)
-                .append(NEWLINE);
-        for (Group group : groups) {
-            script.append(OPEN_BRACKET)
-                    .append(DEFAULT)
-                    .append(COMA)
-                    .append(WHITESPACE)
-                    .append(QUOTE)
-                    .append(group.getName())
-                    .append(QUOTE)
-                    .append(CLOSE_BRACKET)
-                    .append(COMA)
-                    .append(NEWLINE);
-        }
-        script.deleteCharAt(script.length() - 1)
-                .deleteCharAt(script.length() - 1)
-                .append(SEMICOLON);
         try (Connection connection = ConnectionManager.getConnection();
-             Statement statement = connection.createStatement()) {
-            statement.execute(script.toString());
+             PreparedStatement statement = connection.prepareStatement(ADD_GROUPS_QUERY)) {
+            connection.setAutoCommit(false);
+            for (Group group : groups) {
+                statement.setString(1, group.getName());
+                statement.addBatch();
+            }
+            statement.executeBatch();
+            connection.commit();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

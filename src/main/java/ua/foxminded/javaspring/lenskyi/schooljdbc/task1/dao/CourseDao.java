@@ -7,46 +7,19 @@ import java.util.List;
 
 public class CourseDao {
 
-    private static final String SQL_INSERT_INTO_COURSE_TABLE = "INSERT INTO school.course (id, name, description)";
-    private static final String NEWLINE = "\n";
-    private static final String VALUES = "VALUES";
-    private static final String DEFAULT = "default";
-    private static final String OPEN_BRACKET = "(";
-    private static final String CLOSE_BRACKET = ")";
-    private static final String WHITESPACE = " ";
-    private static final String COMA = ",";
-    private static final String QUOTE = "'";
-    private static final String SEMICOLON = ";";
+    private static final String ADD_COURSES_QUERY = "INSERT INTO school.course (name, description) VALUES (?,?)";
 
     public void addCourses(List<Course> courses) {
-        StringBuilder script = new StringBuilder();
-        script.append(SQL_INSERT_INTO_COURSE_TABLE)
-                .append(NEWLINE)
-                .append(VALUES)
-                .append(NEWLINE);
-        for (Course course : courses) {
-            script.append(OPEN_BRACKET)
-                    .append(DEFAULT)
-                    .append(COMA)
-                    .append(WHITESPACE)
-                    .append(QUOTE)
-                    .append(course.getName())
-                    .append(QUOTE)
-                    .append(COMA)
-                    .append(WHITESPACE)
-                    .append(QUOTE)
-                    .append(course.getDescription())
-                    .append(QUOTE)
-                    .append(CLOSE_BRACKET)
-                    .append(COMA)
-                    .append(NEWLINE);
-        }
-        script.deleteCharAt(script.length() - 1)
-                .deleteCharAt(script.length() - 1)
-                .append(SEMICOLON);
         try (Connection connection = ConnectionManager.getConnection();
-             Statement statement = connection.createStatement()) {
-            statement.execute(script.toString());
+             PreparedStatement statement = connection.prepareStatement(ADD_COURSES_QUERY)) {
+            connection.setAutoCommit(false);
+            for (Course course : courses) {
+                statement.setString(1, course.getName());
+                statement.setString(2, course.getDescription());
+                statement.addBatch();
+            }
+            statement.executeBatch();
+            connection.commit();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
