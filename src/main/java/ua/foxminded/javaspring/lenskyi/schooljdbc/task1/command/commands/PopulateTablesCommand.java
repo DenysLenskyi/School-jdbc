@@ -13,7 +13,6 @@ import java.util.List;
 
 public class PopulateTablesCommand implements Command {
 
-    CourseDao courseTable = new CourseDao();
     GroupDao groupsTable = new GroupDao();
     StudentDao studentTable = new StudentDao();
     StudentCourseDao studentCourseTable = new StudentCourseDao();
@@ -21,7 +20,7 @@ public class PopulateTablesCommand implements Command {
     @Override
     public void execute(CommandHolder ch) {
         List<Course> courses = RandomDataCreator.getCoursesFromResources();
-        courseTable.addCourses(courses);
+        CourseDao.getCourseDao().addCourses(courses);
         List<Group> groups = RandomDataCreator.generateGroups(10);
         groupsTable.addGroups(groups);
         List<Student> students = RandomDataCreator.generateStudents(200);

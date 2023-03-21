@@ -7,7 +7,19 @@ import java.util.List;
 
 public class CourseDao {
 
+    private CourseDao() {
+    }
+
+    private static CourseDao courseDao = new CourseDao();
+
     private static final String ADD_COURSES_QUERY = "INSERT INTO school.course (name, description) VALUES (?,?)";
+    private static final String FORMAT = "%1$s%2$s";
+    private static final String FIND_COURSE_BY_ID_QUERY =
+            "SELECT ID, NAME, DESCRIPTION FROM school.course WHERE ID = ";
+
+    public static CourseDao getCourseDao() {
+        return courseDao;
+    }
 
     public void addCourses(List<Course> courses) {
         try (Connection connection = ConnectionManager.getConnection();
@@ -25,10 +37,11 @@ public class CourseDao {
         }
     }
 
-    public Course findCourseById(String sql) {
+    public Course findCourseById(int courseId) {
         Course course = new Course();
+        String query = String.format(FORMAT, FIND_COURSE_BY_ID_QUERY, courseId);
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {
                 course.setId(rs.getInt(1));
