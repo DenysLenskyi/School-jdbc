@@ -13,7 +13,6 @@ import java.util.List;
 
 public class PopulateTablesCommand implements Command {
 
-    GroupDao groupsTable = new GroupDao();
     StudentDao studentTable = new StudentDao();
     StudentCourseDao studentCourseTable = new StudentCourseDao();
 
@@ -22,7 +21,7 @@ public class PopulateTablesCommand implements Command {
         List<Course> courses = RandomDataCreator.getCoursesFromResources();
         CourseDao.getCourseDao().addCourses(courses);
         List<Group> groups = RandomDataCreator.generateGroups(10);
-        groupsTable.addGroups(groups);
+        GroupDao.getGroupDao().addGroups(groups);
         List<Student> students = RandomDataCreator.generateStudents(200);
         studentTable.addStudents(students);
         List<StudentCourse> studentCourses = RandomDataCreator.generateStudentCourseRelation(200);
