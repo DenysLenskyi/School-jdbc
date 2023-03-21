@@ -8,13 +8,13 @@ import java.util.Scanner;
 
 public class UserInteraction {
 
+    private static final String EXIT = "exit";
+
+    private static CommandDefendant commandDefendant = new CommandDefendant();
+    private static CommandHolder commandHolder;
+
     private UserInteraction() {
     }
-
-    public static final String EXIT = "exit";
-
-    static CommandDefendant commandDefendant = new CommandDefendant();
-    static CommandHolder commandHolder;
 
     public static void runApp(Scanner scanner) {
         String userInput;

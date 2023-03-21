@@ -13,30 +13,30 @@ public class CommandHolderBuilder extends CommandHolder {
     public static CommandHolder buildCommandFromInputString(String commandText) {
         CommandHolder commandHolder = new CommandHolder();
         String[] commandData = commandText.split(StringConstant.WHITESPACE);
-        commandHolder.commandName = commandData[0];
+        commandHolder.setCommandName(commandData[0]);
         if (commandData.length > 1) {
             for (String commandKeyword : commandData) {
                 if (commandKeyword.contains(COURSE_ID)) {
                     String[] keywordValue = commandKeyword.split(StringConstant.EQUAL);
-                    commandHolder.courseId = Integer.parseInt(keywordValue[1]);
+                    commandHolder.setCourseId(Integer.parseInt(keywordValue[1]));
                 } else if (commandKeyword.contains(NUM_STUDENTS)) {
                     String[] keywordValue = commandKeyword.split(StringConstant.EQUAL);
-                    commandHolder.numStudents = Integer.parseInt(keywordValue[1]);
+                    commandHolder.setNumStudents(Integer.parseInt(keywordValue[1]));
                 } else if (commandKeyword.contains(COURSE_NAME)) {
                     String[] keywordValue = commandKeyword.split(StringConstant.EQUAL);
-                    commandHolder.courseName = keywordValue[1];
+                    commandHolder.setCourseName(keywordValue[1]);
                 } else if (commandKeyword.contains(GROUP_ID)) {
                     String[] keywordValue = commandKeyword.split(StringConstant.EQUAL);
-                    commandHolder.groupId = Integer.parseInt(keywordValue[1]);
+                    commandHolder.setGroupId(Integer.parseInt(keywordValue[1]));
                 } else if (commandKeyword.contains(STUDENT_ID)) {
                     String[] keywordValue = commandKeyword.split(StringConstant.EQUAL);
-                    commandHolder.studentId = Integer.parseInt(keywordValue[1]);
+                    commandHolder.setStudentId(Integer.parseInt(keywordValue[1]));
                 } else if (commandKeyword.contains(FIRST_NAME)) {
                     String[] keywordValue = commandKeyword.split(StringConstant.EQUAL);
-                    commandHolder.studentFirstName = keywordValue[1];
+                    commandHolder.setStudentFirstName(keywordValue[1]);
                 } else if (commandKeyword.contains(LAST_NAME)) {
                     String[] keywordValue = commandKeyword.split(StringConstant.EQUAL);
-                    commandHolder.studentLastName = keywordValue[1];
+                    commandHolder.setStudentLastName(keywordValue[1]);
                 }
             }
         }

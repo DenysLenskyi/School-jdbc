@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    static Scanner scanner = new Scanner(System.in);
-    public static final String DISCLAIMER = "info - prints available commands";
+    private static Scanner scanner = new Scanner(System.in);
+    private static final String DISCLAIMER = "info - prints available commands";
 
     public static void main(String[] args) {
         initiateDatabase();

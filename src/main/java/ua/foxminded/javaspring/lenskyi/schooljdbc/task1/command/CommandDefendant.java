@@ -6,17 +6,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandDefendant {
-    static Command unknownCommand = new UnknownCommand();
-    static Map<String, Command> commandCode = new HashMap<>();
-    public static final String INFO = "info";
-    public static final String UNKNOWN = "unknown";
-    public static final String FIND_COURSE_BY_ID = "find_course";
-    public static final String FIND_GROUPS = "find_groups";
-    public static final String FIND_STUDENTS_COURSE = "find_students_course";
-    public static final String ADD_STUDENT = "add_student";
-    public static final String DELETE_STUDENT = "delete_student";
-    public static final String ADD_STUDENT_COURSE = "add_student_course";
-    public static final String DELETE_STUDENT_COURSE = "delete_student_course";
+    private static Command unknownCommand = new UnknownCommand();
+    private static Map<String, Command> commandCode = new HashMap<>();
+    private static final String INFO = "info";
+    private static final String UNKNOWN = "unknown";
+    private static final String FIND_COURSE_BY_ID = "find_course";
+    private static final String FIND_GROUPS = "find_groups";
+    private static final String FIND_STUDENTS_COURSE = "find_students_course";
+    private static final String ADD_STUDENT = "add_student";
+    private static final String DELETE_STUDENT = "delete_student";
+    private static final String ADD_STUDENT_COURSE = "add_student_course";
+    private static final String DELETE_STUDENT_COURSE = "delete_student_course";
 
 
     static {

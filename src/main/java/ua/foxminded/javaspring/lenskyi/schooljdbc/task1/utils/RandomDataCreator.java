@@ -15,9 +15,6 @@ import java.util.Random;
 
 public class RandomDataCreator {
 
-    private RandomDataCreator() {
-    }
-
     private static Random rand;
 
     static {
@@ -32,6 +29,9 @@ public class RandomDataCreator {
 
     private static String[] names = reader.readFile(StringConstant.NAMES_TXT).split(StringConstant.SEMICOLON);
     private static final String SON = "son";
+
+    private RandomDataCreator() {
+    }
 
     public static List<Group> generateGroups(int numGroups) {
         List<Group> groups = new ArrayList<>();

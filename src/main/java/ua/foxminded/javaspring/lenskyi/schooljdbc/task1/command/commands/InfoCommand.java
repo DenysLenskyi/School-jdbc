@@ -5,7 +5,7 @@ import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandHolder;
 
 public class InfoCommand implements Command {
 
-    public static final String INFO = """
+    private static final String INFO = """
             info - prints available commands and how to use them
             exit - exits the app
             find_course --course_id= - prints course's info by course id number (1-10)

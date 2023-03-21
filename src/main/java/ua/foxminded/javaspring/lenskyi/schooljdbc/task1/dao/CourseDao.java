@@ -8,11 +8,9 @@ import java.util.List;
 public class CourseDao {
 
     private static CourseDao courseDao = new CourseDao();
-
     private static final String ADD_COURSES_QUERY = "INSERT INTO school.course (name, description) VALUES (?,?)";
-    private static final String FORMAT = "%1$s%2$s";
     private static final String FIND_COURSE_BY_ID_QUERY =
-            "SELECT ID, NAME, DESCRIPTION FROM school.course WHERE ID = ";
+            "SELECT ID, NAME, DESCRIPTION FROM school.course WHERE ID = ?";
 
     private CourseDao() {
     }
@@ -39,10 +37,11 @@ public class CourseDao {
 
     public Course findCourseById(int courseId) {
         Course course = new Course();
-        String query = String.format(FORMAT, FIND_COURSE_BY_ID_QUERY, courseId);
+        ResultSet rs = null;
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query);
-             ResultSet rs = preparedStatement.executeQuery()) {
+             PreparedStatement statement = connection.prepareStatement(FIND_COURSE_BY_ID_QUERY)) {
+            statement.setInt(1, courseId);
+            rs = statement.executeQuery();
             while (rs.next()) {
                 course.setId(rs.getInt(1));
                 course.setName(rs.getString(2));
@@ -50,6 +49,14 @@ public class CourseDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return course;
     }

@@ -9,7 +9,6 @@ import java.util.List;
 public class GroupDao {
 
     private static GroupDao groupDao = new GroupDao();
-
     private static final String ADD_GROUPS_QUERY = "INSERT INTO school.group (name) VALUES (?)";
     private static final String FIND_GROUPS_WITH_LESS_OR_EQUAL_NUM_STUDENTS_QUERY = """
             select group_id, school.group.name group_name, count(student.id)
@@ -47,10 +46,8 @@ public class GroupDao {
         try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement preparedStatement = connection
                      .prepareStatement(FIND_GROUPS_WITH_LESS_OR_EQUAL_NUM_STUDENTS_QUERY)) {
-            connection.setAutoCommit(false);
             preparedStatement.setInt(1, numStudents);
             rs = preparedStatement.executeQuery();
-            connection.commit();
             while (rs.next()) {
                 Group group = new Group();
                 group.setId(rs.getInt(1));
