@@ -10,7 +10,7 @@ public class ConnectionManager {
     }
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DatabaseProperties.DB_URL,
-                DatabaseProperties.DB_USER, DatabaseProperties.DB_PASSWORD);
+        return DriverManager.getConnection(DatabaseProperties.getDbUrl(),
+                DatabaseProperties.getDbUser(), DatabaseProperties.getDbPassword());
     }
 }

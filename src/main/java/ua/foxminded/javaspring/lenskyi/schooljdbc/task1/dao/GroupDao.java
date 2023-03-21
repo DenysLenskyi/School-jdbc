@@ -8,9 +8,6 @@ import java.util.List;
 
 public class GroupDao {
 
-    private GroupDao() {
-    }
-
     private static GroupDao groupDao = new GroupDao();
 
     private static final String ADD_GROUPS_QUERY = "INSERT INTO school.group (name) VALUES (?)";
@@ -21,6 +18,9 @@ public class GroupDao {
                 group by name, group_id
                 having count(student.id) <=?
                 """;
+
+    private GroupDao() {
+    }
 
     public static GroupDao getGroupDao() {
         return groupDao;

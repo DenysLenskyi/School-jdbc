@@ -7,15 +7,15 @@ import java.util.List;
 
 public class CourseDao {
 
-    private CourseDao() {
-    }
-
     private static CourseDao courseDao = new CourseDao();
 
     private static final String ADD_COURSES_QUERY = "INSERT INTO school.course (name, description) VALUES (?,?)";
     private static final String FORMAT = "%1$s%2$s";
     private static final String FIND_COURSE_BY_ID_QUERY =
             "SELECT ID, NAME, DESCRIPTION FROM school.course WHERE ID = ";
+
+    private CourseDao() {
+    }
 
     public static CourseDao getCourseDao() {
         return courseDao;
