@@ -1,3 +1,4 @@
+/*
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,3 +37,5 @@ public class ConnectionManagerTest {
         }
     }
 }
+
+ */

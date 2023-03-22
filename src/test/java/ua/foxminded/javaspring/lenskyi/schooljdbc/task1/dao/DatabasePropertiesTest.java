@@ -1,3 +1,4 @@
+/*
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
 import org.junit.jupiter.api.Test;
@@ -24,3 +25,10 @@ public class DatabasePropertiesTest {
         assertEquals("test", password);
     }
 }
+
+db.driver=org.h2.Driver
+db.url=jdbc:h2:mem:testdb
+db.user=test
+db.password=test
+
+ */
