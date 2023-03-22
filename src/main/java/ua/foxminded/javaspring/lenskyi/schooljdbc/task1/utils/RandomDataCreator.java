@@ -46,9 +46,11 @@ public class RandomDataCreator {
 
     private static String generateGroupName() {
         StringBuilder groupName = new StringBuilder();
+        int minNumberInGroupName = 10;
+        int maxNumberInGroupName = 99;
         return groupName.append(getRandomCharactersUpperCase(2))
                 .append(StringConstant.HYPHEN)
-                .append(rand.nextInt(10, 100))
+                .append(rand.nextInt(minNumberInGroupName, maxNumberInGroupName + 1))
                 .toString();
     }
 
@@ -84,8 +86,10 @@ public class RandomDataCreator {
     private static void assignStudentsToGroups(List<Student> students, int numOfGroups) {
         int numOfAssignedStudents = 0;
         int numStudentsToAssign = students.size();
+        int minNumStudentsForGroup = 10;
+        int maxNumStudentsForGroup = 30;
         for (int i = 1; i <= numOfGroups; i++) {
-            int randomNumOfStudentsForOneGroup = rand.nextInt(10, 31);
+            int randomNumOfStudentsForOneGroup = rand.nextInt(minNumStudentsForGroup, maxNumStudentsForGroup + 1);
             numOfAssignedStudents += randomNumOfStudentsForOneGroup;
             if (numOfAssignedStudents > students.size()) {
                 break;
@@ -100,22 +104,26 @@ public class RandomDataCreator {
     }
 
     private static String generateStudentFirstName() {
-        return names[rand.nextInt( 40)];
+        int maxNumInNamesArray = 40;
+        return names[rand.nextInt(maxNumInNamesArray)];
     }
 
     private static String generateStudentLastName() {
+        int maxNumInNamesArray = 40;
         StringBuilder studentLastName = new StringBuilder();
-        return studentLastName.append(names[rand.nextInt(40)]).append(SON).toString();
+        return studentLastName.append(names[rand.nextInt(maxNumInNamesArray)]).append(SON).toString();
     }
 
     public static List<StudentCourse> generateStudentCourseRelation(int numStudents) {
         List<StudentCourse> studentsCourses = new ArrayList<>();
+        int minCourseId = 1;
+        int maxCourseId = 10;
         for (int i = 1; i <= numStudents; i++) {
             StudentCourse studentCourse = new StudentCourse();
             int numCourses = rand.nextInt(1, 4);
             while (numCourses > 0) {
                 studentCourse.setStudentId(i);
-                studentCourse.setCourseId(rand.nextInt(1, 11));
+                studentCourse.setCourseId(rand.nextInt(minCourseId, maxCourseId + 1));
                 studentsCourses.add(studentCourse);
                 numCourses--;
             }

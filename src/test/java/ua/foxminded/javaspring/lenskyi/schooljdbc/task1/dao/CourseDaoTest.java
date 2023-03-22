@@ -1,37 +1,34 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
 import org.junit.jupiter.api.Test;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.Command;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandHolder;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.commands.CreateTablesCommand;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.commands.PopulateTablesCommand;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Course;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CourseDaoTest {
 
-    static {
-        initiateDatabase();
-        populateDatabase();
-    }
-
-    private static void initiateDatabase() {
-        Command createNewTables = new CreateTablesCommand();
-        createNewTables.execute(new CommandHolder());
-    }
-
-    private static void populateDatabase() {
-        Command populateTables = new PopulateTablesCommand();
-        populateTables.execute(new CommandHolder());
+    @Test
+    public void findCourseById1Test() {
+        Course test = CourseDao.getCourseDao().findCourseById(1);
+        assertEquals(1, test.getId());
+        assertEquals("Math", test.getName());
+        assertEquals("Math", test.getDescription());
     }
 
     @Test
-    public void findCourseById0Test() {
-        Course test = CourseDao.getCourseDao().findCourseById(0);
-        assertEquals(0, test.getId());
-        assertEquals(null, test.getName());
-        assertEquals(null, test.getDescription());
+    public void findCourseById2Test() {
+        Course test = CourseDao.getCourseDao().findCourseById(2);
+        assertEquals(2, test.getId());
+        assertEquals("Bio", test.getName());
+        assertEquals("Bio", test.getDescription());
+    }
+
+    @Test
+    public void findCourseById3Test() {
+        Course test = CourseDao.getCourseDao().findCourseById(3);
+        assertEquals(3, test.getId());
+        assertEquals("Sport", test.getName());
+        assertEquals("Sport", test.getDescription());
     }
 
     @Test

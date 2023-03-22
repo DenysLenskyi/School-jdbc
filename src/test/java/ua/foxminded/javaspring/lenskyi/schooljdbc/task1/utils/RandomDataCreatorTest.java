@@ -1,4 +1,4 @@
-package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
+package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils;
 
 import org.junit.jupiter.api.Test;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Course;
