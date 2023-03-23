@@ -1,6 +1,5 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils;
 
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.StringConstant;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Course;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Group;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Student;
@@ -25,10 +24,14 @@ public class RandomDataCreator {
         }
     }
 
-    private static FileReader reader = new FileReader();
-
-    private static String[] names = reader.readFile(StringConstant.NAMES_TXT).split(StringConstant.SEMICOLON);
+    private static final String NAMES_TXT = "/names.txt";
+    private static final String COURSES = "/courses.txt";
     private static final String SON = "son";
+    private static final String SEMICOLON = ";";
+    private static final String HYPHEN = "-";
+    private static final String WHITESPACE_HYPHEN_WHITESPACE = " - ";
+    private static FileReader reader = new FileReader();
+    private static String[] names = reader.readFile(NAMES_TXT).split(SEMICOLON);
 
     private RandomDataCreator() {
     }
@@ -49,7 +52,7 @@ public class RandomDataCreator {
         int minNumberInGroupName = 10;
         int maxNumberInGroupName = 99;
         return groupName.append(getRandomCharactersUpperCase(2))
-                .append(StringConstant.HYPHEN)
+                .append(HYPHEN)
                 .append(rand.nextInt(minNumberInGroupName, maxNumberInGroupName + 1))
                 .toString();
     }
@@ -133,10 +136,10 @@ public class RandomDataCreator {
 
     public static List<Course> getCoursesFromResources() {
         List<Course> courses = new ArrayList<>();
-        String[] coursesWithDescription = reader.readFile(StringConstant.COURSES).split(StringConstant.SEMICOLON);
+        String[] coursesWithDescription = reader.readFile(COURSES).split(SEMICOLON);
         int id = 0;
         for (String courseWithDescription : coursesWithDescription) {
-            String[] str = courseWithDescription.split(StringConstant.WHITESPACE_HYPHEN_WHITESPACE);
+            String[] str = courseWithDescription.split(WHITESPACE_HYPHEN_WHITESPACE);
             Course course = new Course();
             course.setId(id++);
             course.setName(str[0]);
