@@ -3,10 +3,6 @@ package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.commands;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.Command;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandHolder;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.GroupDao;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Group;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class FindGroupsWithNumStudentsCommand implements Command {
 
@@ -19,14 +15,11 @@ public class FindGroupsWithNumStudentsCommand implements Command {
 
     @Override
     public void execute(CommandHolder commandHolder) {
-        List<String> output = new ArrayList<>();
-        List<Group> queryResult = GroupDao.getGroupDao()
-                .getGroupWithLessOrEqualAmountOfStudents(commandHolder.getNumStudents());
-        for (Group group : queryResult) {
-            String groupInfo = String.format(FORMAT, GROUP_ID, group.getId(), GROUP_NAME, group.getName());
-            output.add(groupInfo);
-        }
         System.out.println(String.format(DISCLAIMER_FORMAT, DISCLAIMER, commandHolder.getNumStudents(), STUDENTS));
-        output.forEach(System.out::println);
+        GroupDao.getGroupDao().getGroupWithLessOrEqualAmountOfStudents(commandHolder.getNumStudents())
+                .stream()
+                .map(group -> String.format(FORMAT, GROUP_ID, group.getId(), GROUP_NAME, group.getName()))
+                .forEach(System.out::println);
+        System.out.println('\n');
     }
 }

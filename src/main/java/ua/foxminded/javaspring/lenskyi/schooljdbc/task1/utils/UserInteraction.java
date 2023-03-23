@@ -19,6 +19,7 @@ public class UserInteraction {
     public static void runApp(Scanner scanner) {
         String userInput;
         while (true) {
+            System.out.print('>');
             userInput = scanner.nextLine();
             if (EXIT.equals(userInput)) {
                 break;

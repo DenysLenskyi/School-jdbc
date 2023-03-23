@@ -10,7 +10,7 @@ public class FindCourseByIdCommand implements Command {
     private static final String COURSE_ID = "Course ID: ";
     private static final String COURSE_NAME = "Course name: ";
     private static final String COURSE_DESCRIPTION = "Description: ";
-    private static final String FORMAT = "%1$s %2$s | %3$s %4$s | %5$s %6$s";
+    private static final String FORMAT = "%1$s %2$s | %3$s %4$s | %5$s %6$s\n";
 
     @Override
     public void execute(CommandHolder commandHolder) {

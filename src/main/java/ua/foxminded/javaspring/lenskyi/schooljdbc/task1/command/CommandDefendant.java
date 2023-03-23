@@ -9,7 +9,6 @@ public class CommandDefendant {
     private static Command unknownCommand = new UnknownCommand();
     private static Map<String, Command> commandCode = new HashMap<>();
     private static final String INFO = "info";
-    private static final String UNKNOWN = "unknown";
     private static final String FIND_COURSE_BY_ID = "find_course";
     private static final String FIND_GROUPS = "find_groups";
     private static final String FIND_STUDENTS_COURSE = "find_students_course";
@@ -21,7 +20,6 @@ public class CommandDefendant {
 
     static {
         commandCode.put(INFO, new InfoCommand());
-        commandCode.put(UNKNOWN, unknownCommand);
         commandCode.put(FIND_COURSE_BY_ID, new FindCourseByIdCommand());
         commandCode.put(FIND_GROUPS, new FindGroupsWithNumStudentsCommand());
         commandCode.put(FIND_STUDENTS_COURSE, new FindStudentsEnrolledToCourseCommand());

@@ -13,15 +13,18 @@ import java.util.List;
 
 public class PopulateTablesCommand implements Command {
 
+    private static int numGroups = 10;
+    private static int numStudents = 200;
+
     @Override
     public void execute(CommandHolder ch) {
         List<Course> courses = RandomDataCreator.getCoursesFromResources();
         CourseDao.getCourseDao().addCourses(courses);
-        List<Group> groups = RandomDataCreator.generateGroups(10);
+        List<Group> groups = RandomDataCreator.generateGroups(numGroups);
         GroupDao.getGroupDao().addGroups(groups);
-        List<Student> students = RandomDataCreator.generateStudents(200);
+        List<Student> students = RandomDataCreator.generateStudents(numStudents);
         StudentDao.getStudentDao().addStudents(students);
-        List<StudentCourse> studentCourses = RandomDataCreator.generateStudentCourseRelation(200);
+        List<StudentCourse> studentCourses = RandomDataCreator.generateStudentCourseRelation(numStudents);
         StudentCourseDao.getStudentCourseDao().addStudentCourses(studentCourses);
     }
 }
