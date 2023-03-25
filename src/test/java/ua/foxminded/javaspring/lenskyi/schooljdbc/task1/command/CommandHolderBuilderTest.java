@@ -1,15 +1,23 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CommandHolderBuilderTest {
 
-    @Test
-    void invokeInfoTest() {
-        CommandHolder test = CommandHolderBuilder.buildCommandFromInputString("info");
-        assertEquals("info", test.getCommandName());
+    @ParameterizedTest
+    @ValueSource(strings = {"info", "find_course --course_id=7", "find_groups --num_students=20",
+            "find_students --course_name=History", "add_student --group_id=10 --first_name=Alice --last_name=Cooper",
+            "delete_student --student_id=1", "add_student_course --student_id=1 --course_name=History",
+            "delete_student_course --student_id=1 --course_name=History"})
+    void buildCommandFromInputStringCorrectCommandNameTest(String string) {
+        CommandHolder test = CommandHolderBuilder.buildCommandFromInputString(string);
+        String[] str = string.split(" ");
+        assertTrue(test.getCommandName().equals(str[0]));
     }
 
     @Test
@@ -17,14 +25,12 @@ public class CommandHolderBuilderTest {
         CommandHolder test = CommandHolderBuilder
                 .buildCommandFromInputString("find_course --course_id=7");
         assertEquals(7, test.getCourseId());
-        assertEquals("find_course", test.getCommandName());
     }
 
     @Test
     void invokeFindGroupTest() {
         CommandHolder test = CommandHolderBuilder
                 .buildCommandFromInputString("find_groups --num_students=20");
-        assertEquals("find_groups", test.getCommandName());
         assertEquals(20, test.getNumStudents());
     }
 
@@ -32,7 +38,6 @@ public class CommandHolderBuilderTest {
     void invokeStudentsFromCourseTest() {
         CommandHolder test = CommandHolderBuilder
                 .buildCommandFromInputString("find_students --course_name=History");
-        assertEquals("find_students", test.getCommandName());
         assertEquals("History", test.getCourseName());
     }
 
@@ -40,7 +45,6 @@ public class CommandHolderBuilderTest {
     void invokeAddStudentTest() {
         CommandHolder test = CommandHolderBuilder
                 .buildCommandFromInputString("add_student --group_id=10 --first_name=Alice --last_name=Cooper");
-        assertEquals("add_student", test.getCommandName());
         assertEquals(10, test.getGroupId());
         assertEquals("Alice", test.getStudentFirstName());
         assertEquals("Cooper", test.getStudentLastName());
@@ -50,7 +54,6 @@ public class CommandHolderBuilderTest {
     void invokeDeleteStudentTest() {
         CommandHolder test = CommandHolderBuilder
                 .buildCommandFromInputString("delete_student --student_id=1");
-        assertEquals("delete_student", test.getCommandName());
         assertEquals(1, test.getStudentId());
     }
 
@@ -58,7 +61,6 @@ public class CommandHolderBuilderTest {
     void invokeAddStudentToCourseTest() {
         CommandHolder test = CommandHolderBuilder
                 .buildCommandFromInputString("add_student_course --student_id=1 --course_name=History");
-        assertEquals("add_student_course", test.getCommandName());
         assertEquals(1, test.getStudentId());
         assertEquals("History", test.getCourseName());
     }
@@ -67,7 +69,6 @@ public class CommandHolderBuilderTest {
     void invokeDeleteStudentFromCourseTest() {
         CommandHolder test = CommandHolderBuilder
                 .buildCommandFromInputString("delete_student_course --student_id=1 --course_name=History");
-        assertEquals("delete_student_course", test.getCommandName());
         assertEquals(1, test.getStudentId());
         assertEquals("History", test.getCourseName());
     }

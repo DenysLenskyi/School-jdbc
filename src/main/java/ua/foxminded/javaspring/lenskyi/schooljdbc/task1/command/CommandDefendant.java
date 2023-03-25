@@ -29,6 +29,10 @@ public class CommandDefendant {
         commandCode.put(DELETE_STUDENT_COURSE, new DeleteStudentFromCourseCommand());
     }
 
+    public static Map<String, Command> getCommandCode() {
+        return commandCode;
+    }
+
     public Command getCommandByCode(String code) {
         if (commandCode.containsKey(code)) {
             return commandCode.get(code);

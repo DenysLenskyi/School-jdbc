@@ -1,5 +1,6 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1;
 
+import org.postgresql.util.PSQLException;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.Command;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandHolder;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.commands.CreateTablesCommand;
