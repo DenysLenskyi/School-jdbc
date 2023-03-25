@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupDao {
+public class GroupDao extends BaseDao {
 
     private static GroupDao groupDao = new GroupDao();
     private static final String ADD_GROUPS_QUERY = "INSERT INTO school.group (name) VALUES (?)";

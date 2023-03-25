@@ -2,7 +2,7 @@ package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.commands;
 
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.Command;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.command.CommandHolder;
-import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.TableCreateDao;
+import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.BaseDao;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.utils.FileReader;
 
 public class CreateTablesCommand implements Command {
@@ -13,6 +13,6 @@ public class CreateTablesCommand implements Command {
 
     @Override
     public void execute(CommandHolder commandHolder) {
-        TableCreateDao.getTableCreateDao().createNewTables(TABLES_INITIATION_SCRIPT);
+        BaseDao.getBaseDao().executeScript(TABLES_INITIATION_SCRIPT);
     }
 }

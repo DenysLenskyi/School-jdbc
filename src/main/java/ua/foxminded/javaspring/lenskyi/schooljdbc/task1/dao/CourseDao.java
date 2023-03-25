@@ -5,7 +5,7 @@ import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Course;
 import java.sql.*;
 import java.util.List;
 
-public class CourseDao {
+public class CourseDao extends BaseDao {
 
     private static CourseDao courseDao = new CourseDao();
     private static final String ADD_COURSES_QUERY = "INSERT INTO school.course (name, description) VALUES (?,?)";

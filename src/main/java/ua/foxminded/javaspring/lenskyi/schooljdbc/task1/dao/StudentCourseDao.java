@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentCourseDao {
+public class StudentCourseDao extends BaseDao {
 
     private static StudentCourseDao studentCourseDao = new StudentCourseDao();
 

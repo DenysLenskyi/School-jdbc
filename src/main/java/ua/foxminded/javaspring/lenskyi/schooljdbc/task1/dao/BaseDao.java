@@ -3,18 +3,18 @@ package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class TableCreateDao {
+public class BaseDao {
 
-    private static TableCreateDao tableCreateDao = new TableCreateDao();
+    private static BaseDao baseDao = new BaseDao();
 
-    private TableCreateDao() {
+    public BaseDao() {
     }
 
-    public static TableCreateDao getTableCreateDao() {
-        return tableCreateDao;
+    public static BaseDao getBaseDao() {
+        return baseDao;
     }
 
-    public void createNewTables(String sql) {
+    public void executeScript(String sql) {
         try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement()) {
             statement.execute(sql);

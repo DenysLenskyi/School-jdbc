@@ -5,7 +5,7 @@ import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Student;
 import java.sql.*;
 import java.util.List;
 
-public class StudentDao {
+public class StudentDao extends BaseDao {
 
     private static StudentDao studentDao = new StudentDao();
 
