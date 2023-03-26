@@ -9,8 +9,9 @@ import java.util.List;
 
 public class StudentCourseDao extends BaseDao {
 
+    private static int minStudentId = 1;
+    private static int maxStudentId = 200;
     private static StudentCourseDao studentCourseDao = new StudentCourseDao();
-
     private static final String ADD_STUDENTS_COURSES_QUERY =
             "INSERT INTO school.student_course (STUDENT_ID, COURSE_ID) VALUES (?,?)";
     private static final String FIND_STUDENTS_ENROLLED_TO_COURSE_QUERY = """
@@ -31,6 +32,16 @@ public class StudentCourseDao extends BaseDao {
             where student_id = ? and course_id in (select
             id from school.course where name = ?)
             """;
+    private static final String DISCLAIMER_AFTER_WRONG_INPUT = """
+            Failed...
+            Available courses: Math, English, Biologic, Geography, Chemistry,
+                               Physics, History, Finance, Sports, Etiquette.
+            Student id should be integer in 1-200
+            Do not previously delete student by it's id if you'd like to enroll this student to course
+            """;
+    private static final String STUDENT_ADDED_TO_COURSE = "Student added to course";
+    private static final String STUDENT_REMOVED_FROM_COURSE = "Student removed from course";
+    private static List<String> availableCoursesNames = CourseDao.getAvailableCoursesNames();
 
     private StudentCourseDao() {
     }
@@ -69,6 +80,9 @@ public class StudentCourseDao extends BaseDao {
                 student.setLastName(rs.getString(3));
                 output.add(student);
             }
+            if (!(availableCoursesNames.contains(courseName))) {
+                System.out.println(DISCLAIMER_AFTER_WRONG_INPUT);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -89,8 +103,13 @@ public class StudentCourseDao extends BaseDao {
             statement.setInt(1, studentId);
             statement.setString(2, courseName);
             statement.execute();
+            if (studentId >= minStudentId && studentId <= maxStudentId && availableCoursesNames.contains(courseName)) {
+                System.out.println(STUDENT_ADDED_TO_COURSE);
+            } else {
+                System.out.println(DISCLAIMER_AFTER_WRONG_INPUT);
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(DISCLAIMER_AFTER_WRONG_INPUT);
         }
     }
 
@@ -100,8 +119,13 @@ public class StudentCourseDao extends BaseDao {
             statement.setInt(1, studentId);
             statement.setString(2, courseName);
             statement.execute();
+            if (studentId >= minStudentId && studentId <= maxStudentId && availableCoursesNames.contains(courseName)) {
+                System.out.println(STUDENT_REMOVED_FROM_COURSE);
+            } else {
+                System.out.println(DISCLAIMER_AFTER_WRONG_INPUT);
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(DISCLAIMER_AFTER_WRONG_INPUT);
         }
     }
 }

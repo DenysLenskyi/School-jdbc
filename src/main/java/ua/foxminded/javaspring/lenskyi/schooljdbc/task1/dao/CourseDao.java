@@ -3,6 +3,7 @@ package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Course;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDao extends BaseDao {
@@ -11,8 +12,13 @@ public class CourseDao extends BaseDao {
     private static final String ADD_COURSES_QUERY = "INSERT INTO school.course (name, description) VALUES (?,?)";
     private static final String FIND_COURSE_BY_ID_QUERY =
             "SELECT ID, NAME, DESCRIPTION FROM school.course WHERE ID = ?";
+    private static List<String> availableCoursesNames = new ArrayList<>();
 
     private CourseDao() {
+    }
+
+    public static List<String> getAvailableCoursesNames() {
+        return availableCoursesNames;
     }
 
     public static CourseDao getCourseDao() {
@@ -27,6 +33,7 @@ public class CourseDao extends BaseDao {
                 statement.setString(1, course.getName());
                 statement.setString(2, course.getDescription());
                 statement.addBatch();
+                availableCoursesNames.add(course.getName());
             }
             statement.executeBatch();
             connection.commit();

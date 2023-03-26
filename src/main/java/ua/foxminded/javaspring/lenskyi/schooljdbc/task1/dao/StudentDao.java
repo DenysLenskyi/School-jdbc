@@ -7,6 +7,10 @@ import java.util.List;
 
 public class StudentDao extends BaseDao {
 
+    private static int minGroupId = 1;
+    private static int maxGroupId = 10;
+    private static int minStudentId = 1;
+    private static int maxStudentId = 200;
     private static StudentDao studentDao = new StudentDao();
     private static final String ADD_STUDENTS_QUERY =
             "INSERT INTO school.student (group_id, first_name, last_name) VALUES (?,?,?)";
@@ -55,7 +59,9 @@ public class StudentDao extends BaseDao {
     public void addNewStudent(int groupId, String firstName, String lastName) {
         try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(ADD_NEW_STUDENT_QUERY)) {
-            statement.setInt(1, groupId);
+            if (groupId >= minGroupId && groupId <= maxGroupId) {
+                statement.setInt(1, groupId);
+            }
             statement.setString(2, firstName);
             statement.setString(3, lastName);
             statement.execute();
@@ -70,7 +76,7 @@ public class StudentDao extends BaseDao {
              PreparedStatement statement = connection.prepareStatement(DELETE_STUDENT_BY_ID_QUERY)) {
             statement.setInt(1, studentId);
             statement.execute();
-            if (studentId < 1 || studentId > 200) {
+            if (studentId < minStudentId || studentId > maxStudentId) {
                 System.out.println(STUDENT_NOT_DELETED);
             } else {
                 System.out.println(STUDENT_DELETED);
