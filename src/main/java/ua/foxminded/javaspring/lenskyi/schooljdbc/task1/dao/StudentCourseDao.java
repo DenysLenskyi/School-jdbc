@@ -55,9 +55,11 @@ public class StudentCourseDao extends BaseDao {
              PreparedStatement statement = connection.prepareStatement(ADD_STUDENTS_COURSES_QUERY)) {
             connection.setAutoCommit(false);
             for (StudentCourse studentCourse : studentsCourses) {
-                statement.setInt(1, studentCourse.getStudentId());
-                statement.setInt(2, studentCourse.getCourseId());
-                statement.addBatch();
+                for (Integer i : studentCourse.getCourseId()) {
+                    statement.setInt(1, studentCourse.getStudentId());
+                    statement.setInt(2, i);
+                    statement.addBatch();
+                }
             }
             statement.executeBatch();
             connection.commit();

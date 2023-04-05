@@ -8,9 +8,7 @@ import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.StudentCourse
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class RandomDataCreator {
 
@@ -123,13 +121,15 @@ public class RandomDataCreator {
         int maxCourseId = 10;
         for (int i = 1; i <= numStudents; i++) {
             StudentCourse studentCourse = new StudentCourse();
+            studentCourse.setStudentId(i);
             int numCourses = rand.nextInt(1, 4);
+            Set<Integer> coursesForStudent = new HashSet<>();
             while (numCourses > 0) {
-                studentCourse.setStudentId(i);
-                studentCourse.setCourseId(rand.nextInt(minCourseId, maxCourseId + 1));
-                studentsCourses.add(studentCourse);
+                coursesForStudent.add(rand.nextInt(minCourseId, maxCourseId + 1));
                 numCourses--;
             }
+            studentCourse.setCourseId(coursesForStudent);
+            studentsCourses.add(studentCourse);
         }
         return studentsCourses;
     }
