@@ -10,10 +10,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CommandHolderBuilderTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"info", "find_course --course_id=7", "find_groups --num_students=20",
-            "find_students --course_name=History", "add_student --group_id=10 --first_name=Alice --last_name=Cooper",
-            "delete_student --student_id=1", "add_student_course --student_id=1 --course_name=History",
-            "delete_student_course --student_id=1 --course_name=History"})
+    @ValueSource(strings = {
+            "info",
+            "find_course --course_id=7",
+            "find_groups --num_students=20",
+            "find_students --course_name=History",
+            "add_student --group_id=10 --first_name=Alice --last_name=Cooper",
+            "delete_student --student_id=1",
+            "add_student_course --student_id=1 --course_name=History",
+            "delete_student_course --student_id=1 --course_name=History"
+    })
     void buildCommandFromInputStringCorrectCommandNameTest(String string) {
         CommandHolder test = CommandHolderBuilder.buildCommandFromInputString(string);
         String[] str = string.split(" ");

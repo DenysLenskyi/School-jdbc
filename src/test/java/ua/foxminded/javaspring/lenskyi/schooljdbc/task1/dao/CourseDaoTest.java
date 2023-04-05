@@ -1,41 +1,30 @@
 package ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import ua.foxminded.javaspring.lenskyi.schooljdbc.task1.dao.domain.Course;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CourseDaoTest {
 
-    @Test
-    public void findCourseById1Test() {
-        Course test = CourseDao.getCourseDao().findCourseById(1);
-        assertEquals(1, test.getId());
-        assertEquals("Math", test.getName());
-        assertEquals("Math", test.getDescription());
+    @ParameterizedTest
+    @MethodSource("provideIdsForFindCourseById")
+    void findCourseByIdTest(int courseId, String expectedName, String expectedDescr) {
+        Course test = CourseDao.getCourseDao().findCourseById(courseId);
+        assertEquals(expectedName, test.getName());
+        assertEquals(expectedDescr, test.getDescription());
     }
 
-    @Test
-    public void findCourseById2Test() {
-        Course test = CourseDao.getCourseDao().findCourseById(2);
-        assertEquals(2, test.getId());
-        assertEquals("Bio", test.getName());
-        assertEquals("Bio", test.getDescription());
-    }
-
-    @Test
-    public void findCourseById3Test() {
-        Course test = CourseDao.getCourseDao().findCourseById(3);
-        assertEquals(3, test.getId());
-        assertEquals("Sport", test.getName());
-        assertEquals("Sport", test.getDescription());
-    }
-
-    @Test
-    public void findCourseByIdNoMatchTest() {
-        Course test = CourseDao.getCourseDao().findCourseById(153);
-        assertEquals(0, test.getId());
-        assertEquals(null, test.getName());
-        assertEquals(null, test.getDescription());
+    private static Stream<Arguments> provideIdsForFindCourseById() {
+        return Stream.of(
+                Arguments.of(1, "Math", "Math"),
+                Arguments.of(2, "Bio", "Bio"),
+                Arguments.of(3, "Sport", "Sport"),
+                Arguments.of(0, null, null)
+        );
     }
 }
