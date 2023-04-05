@@ -17,12 +17,11 @@ public class StudentDao extends BaseDao {
     private static final String ADD_NEW_STUDENT_QUERY =
             "insert into school.student (group_id, first_name, last_name) VALUES (?,?,?)";
     private static final String DELETE_STUDENT_BY_ID_QUERY = "delete from school.student where id = ?";
+    private static final String SELECT_BY_ID = "select * from school.student where id = ?";
     private static final String STUDENT_ADDED = "Student added";
-    private static final String STUDENT_NOT_DELETED = "We have 200 students only, id should be 1-200";
-    private static final String STUDENT_DELETED = "Student deleted";
     private static final String DISCLAIMER_AFTER_INCORRECT_INPUT = """
             Failed to add new student...
-            Group id should be from 1 to 10
+            Group id should be from 1 to 10 (0 to set null group)
             It is recommended to use real names for new students
             Do not use whitespaces
             Please try again
@@ -62,6 +61,9 @@ public class StudentDao extends BaseDao {
             if (groupId >= minGroupId && groupId <= maxGroupId) {
                 statement.setInt(1, groupId);
             }
+            if (groupId == 0) {
+                statement.setNull(1, 0);
+            }
             statement.setString(2, firstName);
             statement.setString(3, lastName);
             statement.execute();
@@ -76,13 +78,32 @@ public class StudentDao extends BaseDao {
              PreparedStatement statement = connection.prepareStatement(DELETE_STUDENT_BY_ID_QUERY)) {
             statement.setInt(1, studentId);
             statement.execute();
-            if (studentId < minStudentId || studentId > maxStudentId) {
-                System.out.println(STUDENT_NOT_DELETED);
-            } else {
-                System.out.println(STUDENT_DELETED);
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean studentIdExistsInTable(int studentId) {
+        boolean idExists = true;
+        ResultSet rs = null;
+        try (Connection connection = ConnectionManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID)) {
+            statement.setInt(1, studentId);
+            rs = statement.executeQuery();
+            if (!(rs.isBeforeFirst())) {
+                idExists = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return idExists;
     }
 }
