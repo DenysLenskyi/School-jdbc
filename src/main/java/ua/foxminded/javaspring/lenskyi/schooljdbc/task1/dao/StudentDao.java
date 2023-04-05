@@ -9,8 +9,6 @@ public class StudentDao extends BaseDao {
 
     private static int minGroupId = 1;
     private static int maxGroupId = 10;
-    private static int minStudentId = 1;
-    private static int maxStudentId = 200;
     private static StudentDao studentDao = new StudentDao();
     private static final String ADD_STUDENTS_QUERY =
             "INSERT INTO school.student (group_id, first_name, last_name) VALUES (?,?,?)";
