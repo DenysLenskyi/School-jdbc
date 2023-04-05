@@ -35,8 +35,6 @@ public class StudentCourseDao extends BaseDao {
             where student_id = ? and course_id in (select
             id from school.course where name = ?)
             """;
-
-    //"select * from school.student_course where student_id = ?";
     private static final String DISCLAIMER_AFTER_WRONG_INPUT = """
             Failed...
             Available courses: Math, English, Biologic, Geography, Chemistry,
