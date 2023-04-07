@@ -68,6 +68,7 @@ public class StudentDao extends BaseDao {
             System.out.println(STUDENT_ADDED);
         } catch (SQLException e) {
             System.out.println(DISCLAIMER_AFTER_INCORRECT_INPUT);
+            e.printStackTrace();
         }
     }
 
