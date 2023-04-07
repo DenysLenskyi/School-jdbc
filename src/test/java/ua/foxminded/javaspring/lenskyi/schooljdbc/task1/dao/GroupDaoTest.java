@@ -45,7 +45,7 @@ public class GroupDaoTest {
         twoGroup.add(secondTestGroup);
         return Stream.of(
                 Arguments.of(7, twoGroup),
-                Arguments.of(1, oneGroup),
+                Arguments.of(3, oneGroup),
                 Arguments.of(0, empty),
                 Arguments.of(152, twoGroup)
         );

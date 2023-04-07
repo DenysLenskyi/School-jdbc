@@ -25,6 +25,7 @@ public class StudentDaoTest {
         List<Group> groups2 = GroupDao.getGroupDao().getGroupWithLessOrEqualAmountOfStudents(5);
         assertEquals(1, groups2.size());
         assertEquals("BB-50", groups2.get(0).getName());
+        assertTrue(!(StudentDao.getStudentDao().studentIdExistsInTable(2)));
     }
 
     @Test
