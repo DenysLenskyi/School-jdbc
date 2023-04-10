@@ -1,3 +1,18 @@
+Do the next steps to run APP:
+1. Download and install JDK or JRE last version from Oracle official website oracle.com
+2. Download and install PostgreSql pgAdmin from postgresql.org
+3. Open pgAdmin and create new database - db_school_lenskyi
+4. Create new user for this database:
+   User name: lenskyi
+   Password: lenskyi
+5. Open commandline\terminal and execute SchoolJDBC-1-jar-with-dependencies.jar with command -java -jar SchoolJDBC-1-jar-with-dependencies.jar
+   You'll need to be in the jar directory or type full path to jar
+   for example: -java -jar /Users/deka/foxminded/SchoolJDBC/target/SchoolJDBC-1-jar-with-dependencies.jar
+6. APP runs, you could use available commands like find_course --course_id=7, find_groups --num_students=20 etc.
+   use 'info' to get full commands list
+
+Task description.
+
 Create a sql-jdbc-school application  that inserts/updates/deletes data in the database using JDBC.
 
 Use PostgreSQL DB.
@@ -47,5 +62,3 @@ d. Delete a student by the STUDENT_ID
 e. Add a student to the course (from a list)
 
 f. Remove the student from one of their courses.
-
-Database name: db_school_lenskyi; User: lenskyi; Password: lenskyi
